@@ -10,26 +10,62 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func didClickOnLoginButton(_ sender: Any) {
+        print("Login clicked")
+        login()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    
+    // MARK: API Calls
+    
+    func validateCredentials(_ errorMessageCallback : (_ message: String) -> Void) -> Bool {
+        
+        let isTextValid = {(txt : UITextField) in
+            return txt.text != nil && txt.text!.characters.count > 4
+        }
+        
+        if !isTextValid(emailTextfield) {
+            errorMessageCallback("Invalid email")
+            return false
+        }
+        
+        if !isTextValid(passwordTextfield) {
+            errorMessageCallback("Invalid password")
+            return false
+        }
+        
+        return true
     }
-    */
-
+    
+    func showErrorMessage(_ message: String?) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func login(){
+        if !validateCredentials(showErrorMessage) {
+            return
+        }
+        
+        UDAClient.sharedInstance().login(email: emailTextfield.text!, password: passwordTextfield.text!) { (success, errorMessage) in
+            
+            if success {
+                print("login is ok")
+            } else {
+                showErrorMessage(errorMessage)
+            }
+        }
+    }
 }

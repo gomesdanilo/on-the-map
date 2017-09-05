@@ -15,7 +15,20 @@
 		9928D7021F5EF52B0072EEEE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7011F5EF52B0072EEEE /* MapViewController.swift */; };
 		9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7031F5EF5750072EEEE /* AddPinViewController.swift */; };
 		9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */; };
+		9928D7091F5F12000072EEEE /* UDAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7081F5F12000072EEEE /* UDAClient.swift */; };
+		9928D7111F5F124E0072EEEE /* on_the_mapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */; };
+		9928D7191F5F127C0072EEEE /* UDAClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7181F5F127C0072EEEE /* UDAClientTest.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9928D7131F5F124E0072EEEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9928D6DF1F5EF4020072EEEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9928D6E61F5EF4020072EEEE;
+			remoteInfo = "on-the-map";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9928D6E71F5EF4020072EEEE /* on-the-map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "on-the-map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,10 +41,22 @@
 		9928D7011F5EF52B0072EEEE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9928D7031F5EF5750072EEEE /* AddPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinViewController.swift; sourceTree = "<group>"; };
 		9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewController.swift; sourceTree = "<group>"; };
+		9928D7081F5F12000072EEEE /* UDAClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAClient.swift; sourceTree = "<group>"; };
+		9928D70E1F5F124E0072EEEE /* on-the-mapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "on-the-mapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = on_the_mapTests.swift; sourceTree = "<group>"; };
+		9928D7121F5F124E0072EEEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9928D7181F5F127C0072EEEE /* UDAClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAClientTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9928D6E41F5EF4020072EEEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9928D70B1F5F124E0072EEEE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				9928D6E91F5EF4020072EEEE /* on-the-map */,
+				9928D70F1F5F124E0072EEEE /* on-the-mapTests */,
 				9928D6E81F5EF4020072EEEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				9928D6E71F5EF4020072EEEE /* on-the-map.app */,
+				9928D70E1F5F124E0072EEEE /* on-the-mapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +102,7 @@
 		9928D6FC1F5EF4100072EEEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9928D7071F5F11D50072EEEE /* Clients */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -97,6 +125,24 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		9928D7071F5F11D50072EEEE /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				9928D7081F5F12000072EEEE /* UDAClient.swift */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		9928D70F1F5F124E0072EEEE /* on-the-mapTests */ = {
+			isa = PBXGroup;
+			children = (
+				9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */,
+				9928D7121F5F124E0072EEEE /* Info.plist */,
+				9928D7181F5F127C0072EEEE /* UDAClientTest.swift */,
+			);
+			path = "on-the-mapTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,6 +163,24 @@
 			productReference = 9928D6E71F5EF4020072EEEE /* on-the-map.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9928D70D1F5F124E0072EEEE /* on-the-mapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9928D7151F5F124E0072EEEE /* Build configuration list for PBXNativeTarget "on-the-mapTests" */;
+			buildPhases = (
+				9928D70A1F5F124E0072EEEE /* Sources */,
+				9928D70B1F5F124E0072EEEE /* Frameworks */,
+				9928D70C1F5F124E0072EEEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9928D7141F5F124E0072EEEE /* PBXTargetDependency */,
+			);
+			name = "on-the-mapTests";
+			productName = "on-the-mapTests";
+			productReference = 9928D70E1F5F124E0072EEEE /* on-the-mapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -130,6 +194,11 @@
 					9928D6E61F5EF4020072EEEE = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
+					};
+					9928D70D1F5F124E0072EEEE = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9928D6E61F5EF4020072EEEE;
 					};
 				};
 			};
@@ -147,6 +216,7 @@
 			projectRoot = "";
 			targets = (
 				9928D6E61F5EF4020072EEEE /* on-the-map */,
+				9928D70D1F5F124E0072EEEE /* on-the-mapTests */,
 			);
 		};
 /* End PBXProject section */
@@ -162,6 +232,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9928D70C1F5F124E0072EEEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -174,10 +251,28 @@
 				9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */,
 				9928D7021F5EF52B0072EEEE /* MapViewController.swift in Sources */,
 				9928D6EB1F5EF4020072EEEE /* AppDelegate.swift in Sources */,
+				9928D7091F5F12000072EEEE /* UDAClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9928D70A1F5F124E0072EEEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9928D7111F5F124E0072EEEE /* on_the_mapTests.swift in Sources */,
+				9928D7191F5F127C0072EEEE /* UDAClientTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9928D7141F5F124E0072EEEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9928D6E61F5EF4020072EEEE /* on-the-map */;
+			targetProxy = 9928D7131F5F124E0072EEEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9928D6EE1F5EF4020072EEEE /* Main.storyboard */ = {
@@ -318,6 +413,32 @@
 			};
 			name = Release;
 		};
+		9928D7161F5F124E0072EEEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "on-the-mapTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.drsg.samples.on-the-mapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/on-the-map.app/on-the-map";
+			};
+			name = Debug;
+		};
+		9928D7171F5F124E0072EEEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "on-the-mapTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.drsg.samples.on-the-mapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/on-the-map.app/on-the-map";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -335,6 +456,14 @@
 			buildConfigurations = (
 				9928D6FA1F5EF4020072EEEE /* Debug */,
 				9928D6FB1F5EF4020072EEEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9928D7151F5F124E0072EEEE /* Build configuration list for PBXNativeTarget "on-the-mapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9928D7161F5F124E0072EEEE /* Debug */,
+				9928D7171F5F124E0072EEEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
