@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		9928D6EB1F5EF4020072EEEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6EA1F5EF4020072EEEE /* AppDelegate.swift */; };
-		9928D6ED1F5EF4020072EEEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6EC1F5EF4020072EEEE /* ViewController.swift */; };
 		9928D6F01F5EF4020072EEEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9928D6EE1F5EF4020072EEEE /* Main.storyboard */; };
 		9928D6F21F5EF4020072EEEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9928D6F11F5EF4020072EEEE /* Assets.xcassets */; };
 		9928D6F51F5EF4020072EEEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9928D6F31F5EF4020072EEEE /* LaunchScreen.storyboard */; };
+		9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6FF1F5EF42B0072EEEE /* LoginViewController.swift */; };
+		9928D7021F5EF52B0072EEEE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7011F5EF52B0072EEEE /* MapViewController.swift */; };
+		9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7031F5EF5750072EEEE /* AddPinViewController.swift */; };
+		9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9928D6E71F5EF4020072EEEE /* on-the-map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "on-the-map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9928D6EA1F5EF4020072EEEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9928D6EC1F5EF4020072EEEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9928D6EF1F5EF4020072EEEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9928D6F11F5EF4020072EEEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9928D6F41F5EF4020072EEEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9928D6F61F5EF4020072EEEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9928D6FF1F5EF42B0072EEEE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9928D7011F5EF52B0072EEEE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9928D7031F5EF5750072EEEE /* AddPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinViewController.swift; sourceTree = "<group>"; };
+		9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,41 @@
 		9928D6E91F5EF4020072EEEE /* on-the-map */ = {
 			isa = PBXGroup;
 			children = (
+				9928D6FE1F5EF41A0072EEEE /* Controller */,
+				9928D6FD1F5EF4170072EEEE /* View */,
+				9928D6FC1F5EF4100072EEEE /* Model */,
 				9928D6EA1F5EF4020072EEEE /* AppDelegate.swift */,
-				9928D6EC1F5EF4020072EEEE /* ViewController.swift */,
 				9928D6EE1F5EF4020072EEEE /* Main.storyboard */,
 				9928D6F11F5EF4020072EEEE /* Assets.xcassets */,
 				9928D6F31F5EF4020072EEEE /* LaunchScreen.storyboard */,
 				9928D6F61F5EF4020072EEEE /* Info.plist */,
 			);
 			path = "on-the-map";
+			sourceTree = "<group>";
+		};
+		9928D6FC1F5EF4100072EEEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9928D6FD1F5EF4170072EEEE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		9928D6FE1F5EF41A0072EEEE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6FF1F5EF42B0072EEEE /* LoginViewController.swift */,
+				9928D7011F5EF52B0072EEEE /* MapViewController.swift */,
+				9928D7031F5EF5750072EEEE /* AddPinViewController.swift */,
+				9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9928D6ED1F5EF4020072EEEE /* ViewController.swift in Sources */,
+				9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */,
+				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
+				9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */,
+				9928D7021F5EF52B0072EEEE /* MapViewController.swift in Sources */,
 				9928D6EB1F5EF4020072EEEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
