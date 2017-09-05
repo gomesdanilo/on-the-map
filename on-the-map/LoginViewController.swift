@@ -53,6 +53,9 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func navigateToMap(){
+        self.performSegue(withIdentifier: "showMap", sender: self)
+    }
     
     func login(){
         if !validateCredentials(showErrorMessage) {
@@ -63,6 +66,7 @@ class LoginViewController: UIViewController {
             
             if success {
                 print("login is ok")
+                self.navigateToMap()
             } else {
                 showErrorMessage(errorMessage)
             }

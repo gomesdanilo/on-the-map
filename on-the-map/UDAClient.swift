@@ -37,30 +37,33 @@ class UDAClient: NSObject {
     
     func login(email:String, password:String,
                completionHandler : (_ success : Bool,_ errorMessage : String?) -> Void) {
-        let request = NSMutableURLRequest(url: getUrl("/session"))
-        request.httpMethod = "POST"
         
-        // Add headers
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        completionHandler(true, nil)
         
-        let postData = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}"
-            .data(using: String.Encoding.utf8)
-        request.httpBody = postData
-        
-        
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            
-            if error != nil {
-                // Error
-                return
-            }
-            
-            print(self.decodeResponse(data: data!))
-            
-        }
-        
-        task.resume()
+//        let request = NSMutableURLRequest(url: getUrl("/session"))
+//        request.httpMethod = "POST"
+//        
+//        // Add headers
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        let postData = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}"
+//            .data(using: String.Encoding.utf8)
+//        request.httpBody = postData
+//        
+//        
+//        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+//            
+//            if error != nil {
+//                // Error
+//                return
+//            }
+//            
+//            print(self.decodeResponse(data: data!))
+//            
+//        }
+//        
+//        task.resume()
     }
     
     func logout(completionHandler : (_ success : Bool,_ errorMessage : String?) -> Void){
