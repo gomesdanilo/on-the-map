@@ -14,6 +14,7 @@ import UIKit
 class UDAClient: NSObject {
     
     let session = URLSession.shared
+    let baseUrl = "https://www.udacity.com/api"
     
     class func sharedInstance() -> UDAClient {
         struct Singleton {
@@ -23,9 +24,20 @@ class UDAClient: NSObject {
     }
     
     
+    func getUrl(_ relativePath : String) -> URL {
+        return URL(string: baseUrl.appending(relativePath))!
+    }
+    
+    func decodeResponse(data : Data) -> String {
+        let range = Range(5..<data.count)
+        let newData = data.subdata(in: range)
+        return NSString(data: newData, encoding: String.Encoding.utf8.rawValue)! as String
+    }
+    
+    
     func login(email:String, password:String,
                completionHandler : (_ success : Bool,_ errorMessage : String?) -> Void) {
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        let request = NSMutableURLRequest(url: getUrl("/session"))
         request.httpMethod = "POST"
         
         // Add headers
@@ -44,9 +56,7 @@ class UDAClient: NSObject {
                 return
             }
             
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range)
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+            print(self.decodeResponse(data: data!))
             
         }
         
@@ -54,7 +64,7 @@ class UDAClient: NSObject {
     }
     
     func logout(completionHandler : (_ success : Bool,_ errorMessage : String?) -> Void){
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        let request = NSMutableURLRequest(url: getUrl("/session"))
         request.httpMethod = "DELETE"
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
@@ -70,11 +80,23 @@ class UDAClient: NSObject {
                 // Error
                 return
             }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range)
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+            print(self.decodeResponse(data: data!))
         }
         task.resume()
     }
+    
+    func getUserInfo(userId : String) {
+        let request = NSMutableURLRequest(url: getUrl("/users/\(userId)"))
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                // Error
+                return
+            }
+            print(self.decodeResponse(data: data!))
+        }
+        task.resume()
+    
+    }
+    
     
 }
