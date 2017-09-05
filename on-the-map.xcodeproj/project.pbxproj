@@ -18,6 +18,7 @@
 		9928D7091F5F12000072EEEE /* UDAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7081F5F12000072EEEE /* UDAClient.swift */; };
 		9928D7111F5F124E0072EEEE /* on_the_mapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */; };
 		9928D7191F5F127C0072EEEE /* UDAClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7181F5F127C0072EEEE /* UDAClientTest.swift */; };
+		9928D71D1F5F233B0072EEEE /* PARClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D71C1F5F233B0072EEEE /* PARClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = on_the_mapTests.swift; sourceTree = "<group>"; };
 		9928D7121F5F124E0072EEEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9928D7181F5F127C0072EEEE /* UDAClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAClientTest.swift; sourceTree = "<group>"; };
+		9928D71C1F5F233B0072EEEE /* PARClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PARClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,8 @@
 		9928D7071F5F11D50072EEEE /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				9928D7081F5F12000072EEEE /* UDAClient.swift */,
+				9928D71B1F5F23270072EEEE /* Udemy Parse */,
+				9928D71A1F5F23100072EEEE /* Udemy Users */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -141,6 +144,22 @@
 				9928D7181F5F127C0072EEEE /* UDAClientTest.swift */,
 			);
 			path = "on-the-mapTests";
+			sourceTree = "<group>";
+		};
+		9928D71A1F5F23100072EEEE /* Udemy Users */ = {
+			isa = PBXGroup;
+			children = (
+				9928D7081F5F12000072EEEE /* UDAClient.swift */,
+			);
+			name = "Udemy Users";
+			sourceTree = "<group>";
+		};
+		9928D71B1F5F23270072EEEE /* Udemy Parse */ = {
+			isa = PBXGroup;
+			children = (
+				9928D71C1F5F233B0072EEEE /* PARClient.swift */,
+			);
+			name = "Udemy Parse";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +269,7 @@
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
 				9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */,
 				9928D7021F5EF52B0072EEEE /* MapViewController.swift in Sources */,
+				9928D71D1F5F233B0072EEEE /* PARClient.swift in Sources */,
 				9928D6EB1F5EF4020072EEEE /* AppDelegate.swift in Sources */,
 				9928D7091F5F12000072EEEE /* UDAClient.swift in Sources */,
 			);
