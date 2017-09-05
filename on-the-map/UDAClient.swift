@@ -48,10 +48,33 @@ class UDAClient: NSObject {
             let newData = data?.subdata(in: range)
             print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
             
-            
-//            {"account": {"registered": true, "key": "10877213997"}, "session": {"id": "1536169741Sefdb365f96eacfc206990708fb482928", "expiration": "2017-11-04T17:49:01.088860Z"}}
         }
         
         task.resume()
     }
+    
+    func logout(completionHandler : (_ success : Bool,_ errorMessage : String?) -> Void){
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                // Error
+                return
+            }
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range)
+            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+        }
+        task.resume()
+    }
+    
 }
