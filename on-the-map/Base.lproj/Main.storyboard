@@ -161,7 +161,7 @@
                             </button>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" id="jNs-YL-9c3">
+                            <barButtonItem  id="jNs-YL-9c3">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FK8-UE-oVB">
                                     <rect key="frame" x="335" y="10" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -171,7 +171,7 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="Znw-QM-dEY">
+                            <barButtonItem  id="Znw-QM-dEY">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZUn-f0-3ey">
                                     <rect key="frame" x="303" y="10" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -250,7 +250,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="On The Map" id="S8A-sk-Zyp">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="KbH-qs-2fz">
+                        <barButtonItem key="leftBarButtonItem"  id="KbH-qs-2fz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Os8-M0-BC7">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -265,7 +265,7 @@
                             </button>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" id="8Oo-lf-hkZ">
+                            <barButtonItem  id="8Oo-lf-hkZ">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BKz-5d-SGR">
                                     <rect key="frame" x="335" y="10" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -275,7 +275,7 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="aTw-Nq-BGd">
+                            <barButtonItem  id="aTw-Nq-BGd">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bhn-01-dv2">
                                     <rect key="frame" x="303" y="10" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
