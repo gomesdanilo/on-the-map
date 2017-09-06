@@ -82,7 +82,10 @@ class PARClient: NSObject {
             }
             let jsonString = self.getJsonString(data: data)
             let students = self.parseStudentsJson(json: jsonString)
-            completionHandler(students, nil)
+            
+            DispatchQueue.main.async {
+                completionHandler(students, nil)
+            }
         }
         task.resume()
     }

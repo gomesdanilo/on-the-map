@@ -63,6 +63,7 @@ class MapViewController: UIViewController {
     }
     
     func populatesMapWithPoints(_ listPoints : [MKPointAnnotation]){
+        self.mapView.removeAnnotations(self.mapView.annotations)
         self.mapView.addAnnotations(listPoints)
     }
     
