@@ -24,6 +24,7 @@
 		997A5CE21F6033C200564334 /* UDAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE11F6033C200564334 /* UDAUser.swift */; };
 		997A5CE41F60367B00564334 /* AddPinMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE31F60367B00564334 /* AddPinMapViewController.swift */; };
 		997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE51F603ADD00564334 /* UIUtils.swift */; };
+		997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE91F6045A400564334 /* PinListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		997A5CE11F6033C200564334 /* UDAUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAUser.swift; sourceTree = "<group>"; };
 		997A5CE31F60367B00564334 /* AddPinMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinMapViewController.swift; sourceTree = "<group>"; };
 		997A5CE51F603ADD00564334 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
+		997A5CE91F6045A400564334 /* PinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,14 +87,8 @@
 				9928D6FE1F5EF41A0072EEEE /* Controller */,
 				9928D6FD1F5EF4170072EEEE /* View */,
 				9928D6FC1F5EF4100072EEEE /* Model */,
-				9928D6EA1F5EF4020072EEEE /* AppDelegate.swift */,
-				9928D6EE1F5EF4020072EEEE /* Main.storyboard */,
-				9928D6F11F5EF4020072EEEE /* Assets.xcassets */,
-				9928D6F31F5EF4020072EEEE /* LaunchScreen.storyboard */,
-				9928D6F61F5EF4020072EEEE /* Info.plist */,
-				997A5CDD1F60197100564334 /* JsonUtil.swift */,
-				997A5CDF1F601B0F00564334 /* WebUtils.swift */,
-				997A5CE51F603ADD00564334 /* UIUtils.swift */,
+				997A5CE71F60456A00564334 /* Util */,
+				997A5CE81F60457900564334 /* Assets */,
 			);
 			path = "on-the-map";
 			sourceTree = "<group>";
@@ -111,6 +107,9 @@
 		9928D6FD1F5EF4170072EEEE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9928D6EE1F5EF4020072EEEE /* Main.storyboard */,
+				9928D6F31F5EF4020072EEEE /* LaunchScreen.storyboard */,
+				997A5CE91F6045A400564334 /* PinListTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -160,6 +159,26 @@
 				9928D71C1F5F233B0072EEEE /* PARClient.swift */,
 			);
 			name = "Udemy Parse";
+			sourceTree = "<group>";
+		};
+		997A5CE71F60456A00564334 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				997A5CDD1F60197100564334 /* JsonUtil.swift */,
+				997A5CDF1F601B0F00564334 /* WebUtils.swift */,
+				997A5CE51F603ADD00564334 /* UIUtils.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		997A5CE81F60457900564334 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6EA1F5EF4020072EEEE /* AppDelegate.swift */,
+				9928D6F11F5EF4020072EEEE /* Assets.xcassets */,
+				9928D6F61F5EF4020072EEEE /* Info.plist */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +255,7 @@
 			files = (
 				997A5CE41F60367B00564334 /* AddPinMapViewController.swift in Sources */,
 				9928D71F1F5F35A80072EEEE /* StudentInformation.swift in Sources */,
+				997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */,
 				9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */,
 				997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */,
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
