@@ -71,7 +71,7 @@ class PARClient: NSObject {
     
     func retrieveLatestStudentLocations(completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void){
     
-        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&-updatedAt")
+        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
