@@ -55,6 +55,9 @@ class AddPinMapViewController: UIViewController {
     }
     
     func placeAnnotation(_ place : MKPlacemark){
+        //let annotation = MKPointAnnotation()
+        //annotation.coordinate = place.coordinate
+        //self.mapView.addAnnotation(annotation)
         self.mapView.addAnnotation(place)
     }
     
@@ -65,26 +68,26 @@ class AddPinMapViewController: UIViewController {
 
 extension AddPinMapViewController : MKMapViewDelegate {
     
-    func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
+    func buildNewAnnotationPin(annotation: MKAnnotation) -> MKPinAnnotationView {
         
         let newPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        newPin.isDraggable = true
+        newPin.animatesDrop = true
         return newPin
     }
     
-    func populateAnnotationPin(annotation: MKAnnotation, pin : MKAnnotationView){
+    func populateAnnotationPin(annotation: MKAnnotation, pin : MKPinAnnotationView){
         pin.annotation = annotation
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         if pinView == nil {
             pinView = buildNewAnnotationPin(annotation: annotation)
         }
         populateAnnotationPin(annotation: annotation, pin: pinView!)
         
-        // Draggable
-        pinView?.isDraggable = true
         
         return pinView
     }
@@ -93,5 +96,6 @@ extension AddPinMapViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView,
                  annotationView view: MKAnnotationView,
                  didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        print("drag")
     }
 }
