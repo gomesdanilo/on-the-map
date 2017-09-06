@@ -39,9 +39,6 @@
 		9928D7031F5EF5750072EEEE /* AddPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinViewController.swift; sourceTree = "<group>"; };
 		9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewController.swift; sourceTree = "<group>"; };
 		9928D7081F5F12000072EEEE /* UDAClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAClient.swift; sourceTree = "<group>"; };
-		9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = on_the_mapTests.swift; sourceTree = "<group>"; };
-		9928D7121F5F124E0072EEEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9928D7181F5F127C0072EEEE /* UDAClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAClientTest.swift; sourceTree = "<group>"; };
 		9928D71C1F5F233B0072EEEE /* PARClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PARClient.swift; sourceTree = "<group>"; };
 		9928D71E1F5F35A80072EEEE /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		997A5CDB1F60184000564334 /* CoordinatesRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatesRange.swift; sourceTree = "<group>"; };
@@ -68,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				9928D6E91F5EF4020072EEEE /* on-the-map */,
-				9928D70F1F5F124E0072EEEE /* on-the-mapTests */,
 				9928D6E81F5EF4020072EEEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,16 +125,6 @@
 				9928D71A1F5F23100072EEEE /* Udemy Users */,
 			);
 			name = Clients;
-			sourceTree = "<group>";
-		};
-		9928D70F1F5F124E0072EEEE /* on-the-mapTests */ = {
-			isa = PBXGroup;
-			children = (
-				9928D7101F5F124E0072EEEE /* on_the_mapTests.swift */,
-				9928D7121F5F124E0072EEEE /* Info.plist */,
-				9928D7181F5F127C0072EEEE /* UDAClientTest.swift */,
-			);
-			path = "on-the-mapTests";
 			sourceTree = "<group>";
 		};
 		9928D71A1F5F23100072EEEE /* Udemy Users */ = {

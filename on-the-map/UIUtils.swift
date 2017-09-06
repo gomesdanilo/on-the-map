@@ -15,13 +15,13 @@ class UIUtils {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
     }
-    
-    static func openWebsite(url : String){
+
+    static func openWebsite( url: String) {
         
         if url == "" {
             return
         }
-        
+
         let app = UIApplication.shared
         app.open(URL(string: url)!, options: [:], completionHandler: { (success) in
             // Results...

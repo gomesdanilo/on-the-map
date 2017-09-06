@@ -10,7 +10,7 @@ import UIKit
 
 class JsonUtil: NSObject {
     
-    static func mapToJsonString(map : [String:Any?]) -> String? {
+    static func mapToJsonString(map: [String:Any?]) -> String? {
     
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: map, options: .prettyPrinted)
@@ -30,7 +30,7 @@ class JsonUtil: NSObject {
         do {
             let map = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             return map as? [String:Any?]
-        } catch  {
+        } catch {
             return nil
         }
     }

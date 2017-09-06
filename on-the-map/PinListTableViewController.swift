@@ -81,7 +81,7 @@ extension PinListTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return students != nil ? students!.count : 0
     }
@@ -90,8 +90,9 @@ extension PinListTableViewController {
         let student = students![indexPath.row]
         openBrowserWithStudent(student)
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PinListTableViewCell
         let row = students![indexPath.row]
         cell.populateWithStudent(row)
