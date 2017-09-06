@@ -22,7 +22,20 @@ class AddPinMapViewController: UIViewController {
         super.viewDidLoad()
         goToLocation()
     }
+    
+    @IBAction func didTapOnConfirmButton(_ sender: Any) {
+        if !locationSelected {
+            showErrorMessage("Please pin a location first")
+            return
+        }
+    }
 
+    func showErrorMessage(_ message: String?) {
+        UIUtils.showErrorMessage(message, viewController: self)
+    }
+    
+    // MARK: - Geocode
+    
     func goToLocation(){
         
         if let address = location {
@@ -47,28 +60,15 @@ class AddPinMapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
-    @IBAction func didTapOnConfirmButton(_ sender: Any) {
-        if !locationSelected {
-            showErrorMessage("Please pin a location first")
-            return
-        }
-    }
+    // MARK: - Annotations
     
     func placeAnnotation(_ place : MKPlacemark){
-        //let annotation = MKPointAnnotation()
-        //annotation.coordinate = place.coordinate
-        //self.mapView.addAnnotation(annotation)
-        self.mapView.addAnnotation(place)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = place.coordinate
+        self.mapView.addAnnotation(annotation)
     }
     
-    func showErrorMessage(_ message: String?) {
-        UIUtils.showErrorMessage(message, viewController: self)
-    }
-}
-
-extension AddPinMapViewController : MKMapViewDelegate {
-    
-    func buildNewAnnotationPin(annotation: MKAnnotation) -> MKPinAnnotationView {
+    func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
         
         let newPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         newPin.isDraggable = true
@@ -76,26 +76,21 @@ extension AddPinMapViewController : MKMapViewDelegate {
         return newPin
     }
     
-    func populateAnnotationPin(annotation: MKAnnotation, pin : MKPinAnnotationView){
+    func populateAnnotationPin(annotation: MKAnnotation, pin : MKAnnotationView){
         pin.annotation = annotation
     }
+}
+
+extension AddPinMapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if pinView == nil {
             pinView = buildNewAnnotationPin(annotation: annotation)
         }
         populateAnnotationPin(annotation: annotation, pin: pinView!)
         
-        
         return pinView
-    }
-    
-    
-    func mapView(_ mapView: MKMapView,
-                 annotationView view: MKAnnotationView,
-                 didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        print("drag")
     }
 }
