@@ -22,36 +22,24 @@ struct CoordinatesRange {
     /**
      Formats a escaped json to send with the parse api.
      */
-    func getParseEscapedJson() -> String? {
+    func getParseEscapedJson() -> String {
         
-        let defaultValue = ""
-        
-        guard let lat0 = minLat else {
-            return defaultValue
-        }
-        
-        guard let lat1 = minLat else {
-            return defaultValue
-        }
-        
-        guard let long0 = minLat else {
-            return defaultValue
-        }
-        
-        guard let long1 = minLat else {
-            return defaultValue
+        if minLat == nil || maxLat == nil || minLong == nil || maxLong == nil {
+            return ""
         }
         
         // E.g {"score":{"$gte":1000,"$lte":3000}}'
-        let jsonData = ["latitude" : ["$lte": lat0, "$gte": lat1],
-                    "longitude" : ["$lte":long0, "$gte":long1]]
+        let jsonData = [
+            "latitude" : ["$lte": maxLat!, "$gte": minLat!],
+            "longitude" : ["$lte": maxLong!, "$gte": minLong!]
+        ]
         
         guard let jsonString = JsonUtil.mapToJsonString(map: jsonData) else {
-            return defaultValue
+            return ""
         }
         
         guard let escaped = WebUtils.escapeStringSafeQuery(data: jsonString) else {
-            return defaultValue
+            return ""
         }
         
         return escaped

@@ -97,9 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				9928D7071F5F11D50072EEEE /* Clients */,
-				9928D71E1F5F35A80072EEEE /* StudentInformation.swift */,
-				997A5CDB1F60184000564334 /* CoordinatesRange.swift */,
-				997A5CE11F6033C200564334 /* UDAUser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -147,6 +144,7 @@
 		9928D71A1F5F23100072EEEE /* Udemy Users */ = {
 			isa = PBXGroup;
 			children = (
+				997A5CE11F6033C200564334 /* UDAUser.swift */,
 				9928D7081F5F12000072EEEE /* UDAClient.swift */,
 			);
 			name = "Udemy Users";
@@ -155,6 +153,8 @@
 		9928D71B1F5F23270072EEEE /* Udemy Parse */ = {
 			isa = PBXGroup;
 			children = (
+				997A5CDB1F60184000564334 /* CoordinatesRange.swift */,
+				9928D71E1F5F35A80072EEEE /* StudentInformation.swift */,
 				9928D71C1F5F233B0072EEEE /* PARClient.swift */,
 			);
 			name = "Udemy Parse";

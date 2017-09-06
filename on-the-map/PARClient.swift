@@ -89,10 +89,12 @@ class PARClient: NSObject {
     }
     
     
-    func retrieveStudentLocations(range : CoordinatesRange, limit : Int = 100,
+    func retrieveStudentLocations(range : CoordinatesRange,
                                   completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void) {
     
-        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation")
+        let rangeParams = range.getParseEscapedJson()
+        
+        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt&where=\(rangeParams)")
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {

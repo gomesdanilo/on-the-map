@@ -50,10 +50,10 @@ class MapViewController: UIViewController {
     func getCoordinatesRange(map : MKMapView) -> CoordinatesRange {
         var range = CoordinatesRange()
         
-        range.minLat = map.region.center.latitude - (map.region.span.latitudeDelta/2.0)
-        range.maxLat = map.region.center.latitude + (map.region.span.latitudeDelta/2.0)
-        range.minLong = map.region.center.longitude + (map.region.span.longitudeDelta/2.0)
-        range.maxLong = map.region.center.longitude + (map.region.span.longitudeDelta/2.0)
+        range.minLat = map.region.center.latitude - map.region.span.latitudeDelta
+        range.maxLat = map.region.center.latitude + map.region.span.latitudeDelta
+        range.minLong = map.region.center.longitude - map.region.span.longitudeDelta
+        range.maxLong = map.region.center.longitude + map.region.span.longitudeDelta
         
         return range
     }
@@ -147,22 +147,16 @@ extension MapViewController : MKMapViewDelegate {
         return pinView
     }
     
-    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        print("didAdd")
-    }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("calloutAccessoryControlTapped")
         
-        if control == view.rightCalloutAccessoryView {
-            
-            let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle! {
-                app.open(URL(string: toOpen)!, options: [:], completionHandler: { (success) in
-                    
-                })
-            }
+        if control != view.rightCalloutAccessoryView {
+            return
         }
+        
+//        if let website = view.annotation?.subtitle {
+//            UIUtils.openWebsite(url: website)
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

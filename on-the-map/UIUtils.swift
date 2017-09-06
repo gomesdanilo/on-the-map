@@ -17,6 +17,11 @@ class UIUtils {
     }
     
     static func openWebsite(url : String){
+        
+        if url == "" {
+            return
+        }
+        
         let app = UIApplication.shared
         app.open(URL(string: url)!, options: [:], completionHandler: { (success) in
             // Results...
