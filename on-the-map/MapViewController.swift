@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    var currentUser : UDAUser?
     let reuseId = "pin"
     
     @IBOutlet weak var mapView: MKMapView!
@@ -25,15 +26,12 @@ class MapViewController: UIViewController {
 
     @IBAction func didClickOnRefresh(_ sender: Any) {
         print("refresh")
-    }
-    
-    @IBAction func didClickOnAdd(_ sender: Any) {
-        print("add")
+        reloadMap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        reloadMap()
     }
     
     func getCoordinatesRange(map : MKMapView) -> CoordinatesRange {
@@ -91,6 +89,10 @@ class MapViewController: UIViewController {
         
         completionHandler(ret)
     }
+    
+    func reloadMap(){
+        loadPinsWithMap(map: self.mapView)
+    }
 }
 
 extension MapViewController : MKMapViewDelegate {
@@ -146,6 +148,16 @@ extension MapViewController : MKMapViewDelegate {
                 app.open(URL(string: toOpen)!, options: [:], completionHandler: { (success) in
                     
                 })
+            }
+        }
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if "addPin" == segue.identifier {
+            if let vc = segue.destination as? AddPinViewController {
+                vc.currentUser = self.currentUser
             }
         }
     }

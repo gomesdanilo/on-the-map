@@ -10,26 +10,71 @@ import UIKit
 
 class AddPinViewController: UIViewController {
 
+    @IBOutlet weak var locationTextfield: UITextField!
+    @IBOutlet weak var websiteTextfield: UITextField!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var currentUser : UDAUser?
+    
+    let segueAddPinOnMap = "addPinOnMap"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        updateUserName()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func updateUserName(){
+        if let user = currentUser?.name {
+            self.nameLabel.text = user
+        } else {
+            self.nameLabel.text = "< Name >"
+        }
     }
-    */
+    
+    func isTextFieldValid(_ textField : UITextField) -> Bool{
+        return textField.text != nil && textField.text!.characters.count > 4
+    }
+    
+    func isUserInpuValid(_ completionHandler : (String) -> Void) -> Bool{
+        if !isTextFieldValid(locationTextfield) {
+            completionHandler("Invalid location")
+            return false
+        }
+        
+        if !isTextFieldValid(websiteTextfield) {
+            completionHandler("Invalid website")
+            return false
+        }
+        return true
+    }
+    
+    func showErrorMessage(_ message: String?) {
+        UIUtils.showErrorMessage(message, viewController: self)
+    }
 
+    @IBAction func didClickOnFindLocation(_ sender: Any) {
+        let valid = isUserInpuValid { (message) in
+            showErrorMessage(message)
+        }
+        
+        if valid {
+            self.goToAddPinOnMapScreen()
+        }
+    }
+    
+    func goToAddPinOnMapScreen(){
+        self.performSegue(withIdentifier: segueAddPinOnMap, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segueAddPinOnMap == segue.identifier {
+            if let vc = segue.destination as? AddPinMapViewController {
+                vc.currentUser = currentUser
+                vc.location = self.locationTextfield.text!
+                vc.website = self.websiteTextfield.text!
+            }
+        }
+    }
 }

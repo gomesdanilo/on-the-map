@@ -166,7 +166,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="icon_addpin"/>
                                     <connections>
-                                        <action selector="didClickOnAdd:" destination="8N5-s1-kce" eventType="touchUpInside" id="Idl-c4-EDE"/>
+                                        <segue destination="oQS-wk-0lO" kind="show" identifier="addPin" id="csT-R4-x1u"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
@@ -190,10 +190,139 @@
             </objects>
             <point key="canvasLocation" x="696.79999999999995" y="141.67916041979012"/>
         </scene>
+        <!--Add Location-->
+        <scene sceneID="ruI-2Y-Wyc">
+            <objects>
+                <viewController title="Add Location" id="oQS-wk-0lO" customClass="AddPinViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nbM-nu-w6y"/>
+                        <viewControllerLayoutGuide type="bottom" id="I47-mx-0Db"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k6N-An-vJJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ivB-JH-3Bp" userLabel="container form">
+                                <rect key="frame" x="38" y="94" width="300" height="257.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="58A-Yl-t51" userLabel="container labels">
+                                        <rect key="frame" x="72.5" y="0.0" width="155.5" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qY4-Tv-l0T">
+                                                <rect key="frame" x="0.0" y="0.0" width="39" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danilo Gomes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrv-ff-yIz">
+                                                <rect key="frame" x="49" y="0.0" width="106.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-K0-mwm">
+                                        <rect key="frame" x="124" y="50.5" width="52" height="67"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YP1-JH-aCb" userLabel="container inputs">
+                                        <rect key="frame" x="0.0" y="147.5" width="300" height="110"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hn0-23-YyL">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fR-4d-jpR">
+                                                <rect key="frame" x="0.0" y="40" width="300" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDd-Vb-Hr6">
+                                                <rect key="frame" x="0.0" y="80" width="300" height="30"/>
+                                                <color key="backgroundColor" red="0.29650771597034925" green="0.79891893768276856" blue="0.94049546632124348" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="FIND LOCATION">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didClickOnFindLocation:" destination="oQS-wk-0lO" eventType="touchUpInside" id="d9e-0K-CFX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="MKP-pR-sMe"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ivB-JH-3Bp" firstAttribute="centerX" secondItem="k6N-An-vJJ" secondAttribute="centerX" id="JQ8-hy-170"/>
+                            <constraint firstItem="ivB-JH-3Bp" firstAttribute="top" secondItem="nbM-nu-w6y" secondAttribute="bottom" constant="30" id="Sli-h1-mzI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="locationTextfield" destination="hn0-23-YyL" id="SoC-z9-gzX"/>
+                        <outlet property="nameLabel" destination="lrv-ff-yIz" id="ZHI-ra-yb4"/>
+                        <outlet property="websiteTextfield" destination="0fR-4d-jpR" id="ear-TJ-bvv"/>
+                        <segue destination="zkC-kv-iQd" kind="show" identifier="addPinOnMap" id="5jI-SA-TOo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yki-VZ-TeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629.5999999999999" y="141.67916041979012"/>
+        </scene>
+        <!--Place Pin On Map-->
+        <scene sceneID="2qu-9e-l0g">
+            <objects>
+                <viewController title="Place Pin On Map" id="zkC-kv-iQd" customClass="AddPinMapViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JUp-J1-tx6"/>
+                        <viewControllerLayoutGuide type="bottom" id="5YT-9U-6fn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OhC-lg-JJu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XuD-x1-SbO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zkC-kv-iQd" id="XFs-CU-TvR"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XuD-x1-SbO" firstAttribute="leading" secondItem="OhC-lg-JJu" secondAttribute="leading" id="BkO-TU-ndd"/>
+                            <constraint firstAttribute="trailing" secondItem="XuD-x1-SbO" secondAttribute="trailing" id="DkK-8T-TG3"/>
+                            <constraint firstAttribute="bottom" secondItem="XuD-x1-SbO" secondAttribute="bottom" id="RLS-JB-Vcy"/>
+                            <constraint firstItem="XuD-x1-SbO" firstAttribute="top" secondItem="JUp-J1-tx6" secondAttribute="bottom" id="iRU-Ju-0WK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Place Pin On Map" id="2ua-Op-V0n">
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="iHx-Wa-Sk3">
+                            <connections>
+                                <action selector="didTapOnConfirmButton:" destination="zkC-kv-iQd" id="OQ0-oJ-uJF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="XuD-x1-SbO" id="R6x-hA-Rwd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rS0-X2-pvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2556" y="141.67916041979012"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon_addpin" width="24" height="24"/>
         <image name="icon_refresh" width="24" height="24"/>
+        <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>
