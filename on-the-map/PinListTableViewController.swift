@@ -42,4 +42,21 @@ class PinListTableViewController: UITableViewController {
         
         return cell
     }
+    
+    func goToLoginPage(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didClickOnLogout(_ sender: Any) {
+        UDAClient.sharedInstance().logout { (success, errorMessage) in
+            
+            if errorMessage != nil {
+                // Error
+                return
+            }
+            
+            AppDelegate.sharedInstance().currentUser = nil
+            self.goToLoginPage()
+        }
+    }
 }

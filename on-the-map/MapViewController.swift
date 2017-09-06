@@ -22,17 +22,29 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
-        print("logout")
+        UDAClient.sharedInstance().logout { (success, errorMessage) in
+            
+            if errorMessage != nil {
+                // Error
+                return
+            }
+            
+            AppDelegate.sharedInstance().currentUser = nil
+            self.goToLoginPage()
+        }
     }
 
     @IBAction func didClickOnRefresh(_ sender: Any) {
         print("refresh")
-        reloadMap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadMap()
+    }
+    
+    func goToLoginPage(){
+        self.dismiss(animated: true, completion: nil)
     }
     
     func getCoordinatesRange(map : MKMapView) -> CoordinatesRange {

@@ -13,8 +13,8 @@ import UIKit
  */
 class UDAClient: NSObject {
     
-    let session = URLSession.shared
-    let baseUrl = "https://www.udacity.com/api"
+    private let session = URLSession.shared
+    private let baseUrl = "https://www.udacity.com/api"
     
     class func sharedInstance() -> UDAClient {
         struct Singleton {
@@ -23,38 +23,61 @@ class UDAClient: NSObject {
         return Singleton.sharedInstance
     }
     
-    func getUrl(_ relativePath : String) -> URL {
+    private func getUrl(_ relativePath : String) -> URL {
         return URL(string: baseUrl.appending(relativePath))!
     }
     
-    func decodeResponse(data : Data) -> String {
+    private func decodeResponse(data : Data) -> String {
         let range = Range(5..<data.count)
         let newData = data.subdata(in: range)
         return NSString(data: newData, encoding: String.Encoding.utf8.rawValue)! as String
     }
     
-    func getJsonHeaders() -> [String:String] {
+    private func getJsonHeaders() -> [String:String] {
         return [
             "Accept" : "application/json",
             "Content-Type" : "application/json"
         ]
     }
     
-    func applyHeaders(headers: [String:String], request : NSMutableURLRequest){
+    private func applyHeaders(headers: [String:String?], request : NSMutableURLRequest){
         for header in headers {
-            request.addValue(header.value, forHTTPHeaderField: header.key)
+            if let val = header.value {
+                request.addValue(val, forHTTPHeaderField: header.key)
+            }
+            
         }
     }
     
-    func buildRequest(path : String, method : String) -> NSMutableURLRequest {
+    private func buildRequest(path : String, method : String) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: getUrl(path))
         request.httpMethod = method
         return request
     }
     
-    func getPostDataForLogin(email:String, password:String) -> Data? {
+    private func getPostDataForLogin(email:String, password:String) -> Data? {
         return "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}"
             .data(using: String.Encoding.utf8)
+    }
+    
+    
+    private func parseJsonMessage(data : Data?) -> [String: Any?]?{
+        let jsonString = self.decodeResponse(data: data!)
+        return JsonUtil.jsonStringToMap(string: jsonString)
+    }
+    
+    private func getSecutiryCookie() -> String?{
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" {
+                return cookie.value
+            }
+        }
+        return nil
+    }
+    
+    private func getSecurityHeaders() -> [String : String?]{
+        return ["X-XSRF-TOKEN" : getSecutiryCookie()]
     }
     
     
@@ -119,29 +142,16 @@ class UDAClient: NSObject {
         task.resume()
     }
     
-    func parseJsonMessage(data : Data?) -> [String: Any?]?{
-        let jsonString = self.decodeResponse(data: data!)
-        return JsonUtil.jsonStringToMap(string: jsonString)
-    }
-    
-    func logout(completionHandler : (_ success : Bool,_ errorMessage : String?) -> Void){
-        let request = NSMutableURLRequest(url: getUrl("/session"))
-        request.httpMethod = "DELETE"
-        var xsrfCookie: HTTPCookie? = nil
-        let sharedCookieStorage = HTTPCookieStorage.shared
-        for cookie in sharedCookieStorage.cookies! {
-            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-        }
-        if let xsrfCookie = xsrfCookie {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-        }
+    func logout(completionHandler : @escaping (_ success : Bool,_ errorMessage : String?) -> Void){
+        let request = buildRequest(path: "/session", method: "DELETE")
+        applyHeaders(headers: getSecurityHeaders(), request: request)
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
-                // Error
+                completionHandler(false, error!.localizedDescription)
                 return
             }
-            print(self.decodeResponse(data: data!))
+            completionHandler(true, nil)
         }
         task.resume()
     }

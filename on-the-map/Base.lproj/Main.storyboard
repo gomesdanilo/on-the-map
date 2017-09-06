@@ -258,6 +258,9 @@
                                     <action selector="didClickOnLogout:" destination="8N5-s1-kce" eventType="touchUpInside" id="K0n-in-INj"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="didClickOnLogout:" destination="kyJ-WQ-hZT" id="jYN-6S-RAc"/>
+                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="8Oo-lf-hkZ">
@@ -461,6 +464,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="csT-R4-x1u"/>
+        <segue reference="bgS-6i-Tnf"/>
     </inferredMetricsTieBreakers>
 </document>
