@@ -45,7 +45,6 @@ class UDAClient: NSObject {
             if let val = header.value {
                 request.addValue(val, forHTTPHeaderField: header.key)
             }
-            
         }
     }
     
@@ -88,7 +87,9 @@ class UDAClient: NSObject {
             
             if errorMessage != nil {
                 // Error
-                completionHandler(nil, errorMessage)
+                DispatchQueue.main.async {
+                    completionHandler(nil, errorMessage)
+                }
                 return
             }
             
@@ -97,11 +98,15 @@ class UDAClient: NSObject {
                 
                 if errorMessage != nil {
                     // Error
-                    completionHandler(nil, errorMessage)
+                    DispatchQueue.main.async {
+                        completionHandler(nil, errorMessage)
+                    }
                     return
                 }
                 
-                completionHandler(userDetails!, nil)
+                DispatchQueue.main.async {
+                    completionHandler(userDetails!, nil)
+                }
             })
         }
     }
@@ -148,10 +153,16 @@ class UDAClient: NSObject {
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
-                completionHandler(false, error!.localizedDescription)
+                DispatchQueue.main.async {
+                    completionHandler(false, error!.localizedDescription)
+                }
+                
                 return
             }
-            completionHandler(true, nil)
+            
+            DispatchQueue.main.async {
+                completionHandler(true, nil)
+            }
         }
         task.resume()
     }

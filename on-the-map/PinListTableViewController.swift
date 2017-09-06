@@ -10,10 +10,12 @@ import UIKit
 
 class PinListTableViewController: UITableViewController {
 
+    var currentUser : UDAUser?
     var students : [StudentInformation]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentUser = AppDelegate.sharedInstance().currentUser
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -27,6 +29,14 @@ class PinListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = students![indexPath.row]
         openBrowserWithStudent(student)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if "addPin" == segue.identifier {
+            if let vc = segue.destination as? AddPinViewController {
+                vc.currentUser = self.currentUser
+            }
+        }
     }
     
     func openBrowserWithStudent(_ student : StudentInformation){

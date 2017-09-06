@@ -117,11 +117,10 @@
 		9928D6FE1F5EF41A0072EEEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9928D6FF1F5EF42B0072EEEE /* LoginViewController.swift */,
-				9928D7011F5EF52B0072EEEE /* MapViewController.swift */,
-				9928D7031F5EF5750072EEEE /* AddPinViewController.swift */,
-				997A5CE31F60367B00564334 /* AddPinMapViewController.swift */,
-				9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */,
+				997A5CEB1F606D2C00564334 /* Login */,
+				997A5CEC1F606D3400564334 /* Main Map */,
+				997A5CEE1F606D4400564334 /* Table */,
+				997A5CED1F606D3C00564334 /* Add Pin Flow */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -179,6 +178,39 @@
 				9928D6F61F5EF4020072EEEE /* Info.plist */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		997A5CEB1F606D2C00564334 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6FF1F5EF42B0072EEEE /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		997A5CEC1F606D3400564334 /* Main Map */ = {
+			isa = PBXGroup;
+			children = (
+				9928D7011F5EF52B0072EEEE /* MapViewController.swift */,
+			);
+			name = "Main Map";
+			sourceTree = "<group>";
+		};
+		997A5CED1F606D3C00564334 /* Add Pin Flow */ = {
+			isa = PBXGroup;
+			children = (
+				9928D7031F5EF5750072EEEE /* AddPinViewController.swift */,
+				997A5CE31F60367B00564334 /* AddPinMapViewController.swift */,
+			);
+			name = "Add Pin Flow";
+			sourceTree = "<group>";
+		};
+		997A5CEE1F606D4400564334 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */,
+			);
+			name = Table;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

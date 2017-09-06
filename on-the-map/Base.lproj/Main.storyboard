@@ -256,11 +256,9 @@
                                 </state>
                                 <connections>
                                     <action selector="didClickOnLogout:" destination="8N5-s1-kce" eventType="touchUpInside" id="K0n-in-INj"/>
+                                    <action selector="didClickOnLogout:" destination="kyJ-WQ-hZT" eventType="touchUpInside" id="Wn4-7Y-Zj2"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <action selector="didClickOnLogout:" destination="kyJ-WQ-hZT" id="jYN-6S-RAc"/>
-                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="8Oo-lf-hkZ">
