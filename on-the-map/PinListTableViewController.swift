@@ -23,19 +23,6 @@ class PinListTableViewController: UITableViewController {
         retrieveStudents()
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students != nil ? students!.count : 0
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let student = students![indexPath.row]
-        openBrowserWithStudent(student)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if "addPin" == segue.identifier {
             if let vc = segue.destination as? AddPinViewController {
@@ -48,14 +35,6 @@ class PinListTableViewController: UITableViewController {
         if let website = student.mediaUrl {
             UIUtils.openWebsite(url: website)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PinListTableViewCell
-        let row = students![indexPath.row]
-        cell.populateWithStudent(row)
-        
-        return cell
     }
     
     func goToLoginPage(){
@@ -77,6 +56,10 @@ class PinListTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func didClickOnReload(_ sender: Any){
+        retrieveStudents()
+    }
+    
     @IBAction func didClickOnLogout(_ sender: Any) {
         UDAClient.sharedInstance().logout { (success, errorMessage) in
             
@@ -89,4 +72,31 @@ class PinListTableViewController: UITableViewController {
             self.goToLoginPage()
         }
     }
+}
+
+// MARK: - Table delegates
+
+extension PinListTableViewController {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return students != nil ? students!.count : 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = students![indexPath.row]
+        openBrowserWithStudent(student)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PinListTableViewCell
+        let row = students![indexPath.row]
+        cell.populateWithStudent(row)
+        
+        return cell
+    }
+
 }

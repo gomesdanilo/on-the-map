@@ -281,7 +281,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="icon_refresh"/>
                                     <connections>
-                                        <action selector="didClickOnRefresh:" destination="8N5-s1-kce" eventType="touchUpInside" id="irF-9P-Ha7"/>
+                                        <action selector="didClickOnReload:" destination="kyJ-WQ-hZT" eventType="touchUpInside" id="uKM-Zd-Z4u"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
