@@ -146,21 +146,39 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="7bo-Az-nno">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="bGB-uf-ldT">
-                            <connections>
-                                <action selector="didClickOnLogout:" destination="8N5-s1-kce" id="JaY-s6-B8K"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="W6J-d5-aln">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zx8-iq-xSf">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="LOGOUT">
+                                    <color key="titleColor" red="0.15135066024204677" green="0.75615188688637469" blue="0.97144187176165808" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didClickOnLogout:" destination="8N5-s1-kce" eventType="touchUpInside" id="uFT-gm-PCM"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="pXr-0J-Nc8">
-                                <connections>
-                                    <action selector="didClickOnAdd:" destination="8N5-s1-kce" id="LeW-74-CL4"/>
-                                </connections>
+                            <barButtonItem style="plain" id="jNs-YL-9c3">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FK8-UE-oVB">
+                                    <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="icon_addpin"/>
+                                    <connections>
+                                        <action selector="didClickOnAdd:" destination="8N5-s1-kce" eventType="touchUpInside" id="Idl-c4-EDE"/>
+                                    </connections>
+                                </button>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="Lqc-Yp-n8z">
-                                <connections>
-                                    <action selector="didClickOnRefresh:" destination="8N5-s1-kce" id="XYh-TE-XvA"/>
-                                </connections>
+                            <barButtonItem style="plain" id="Znw-QM-dEY">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZUn-f0-3ey">
+                                    <rect key="frame" x="303" y="10" width="24" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="icon_refresh"/>
+                                    <connections>
+                                        <action selector="didClickOnRefresh:" destination="8N5-s1-kce" eventType="touchUpInside" id="IT1-0A-fJv"/>
+                                    </connections>
+                                </button>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -174,6 +192,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_addpin" width="24" height="24"/>
+        <image name="icon_refresh" width="24" height="24"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>

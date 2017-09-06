@@ -17,6 +17,7 @@
 		9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */; };
 		9928D7091F5F12000072EEEE /* UDAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D7081F5F12000072EEEE /* UDAClient.swift */; };
 		9928D71D1F5F233B0072EEEE /* PARClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D71C1F5F233B0072EEEE /* PARClient.swift */; };
+		9928D71F1F5F35A80072EEEE /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D71E1F5F35A80072EEEE /* StudentInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		9928D7121F5F124E0072EEEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9928D7181F5F127C0072EEEE /* UDAClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDAClientTest.swift; sourceTree = "<group>"; };
 		9928D71C1F5F233B0072EEEE /* PARClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PARClient.swift; sourceTree = "<group>"; };
+		9928D71E1F5F35A80072EEEE /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				9928D7071F5F11D50072EEEE /* Clients */,
+				9928D71E1F5F35A80072EEEE /* StudentInformation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9928D71F1F5F35A80072EEEE /* StudentInformation.swift in Sources */,
 				9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */,
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
 				9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */,
