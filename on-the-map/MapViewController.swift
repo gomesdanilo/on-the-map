@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    let reuseId = "pin"
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -95,21 +97,26 @@ extension MapViewController : MKMapViewDelegate {
     
     // MARK: Managing Annotation Views
     
+    func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
+        
+        let newPin = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        newPin.canShowCallout = true
+        newPin.image = UIImage(named: "icon_pin")
+        newPin.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        return newPin
+    }
+    
+    func populateAnnotationPin(annotation: MKAnnotation, pin : MKAnnotationView){
+        pin.annotation = annotation
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        let reuseId = "pin"
-    
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-    
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = .blue
-            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            pinView = buildNewAnnotationPin(annotation: annotation)
         }
-        else {
-            pinView!.annotation = annotation
-        }
+        populateAnnotationPin(annotation: annotation, pin: pinView!)
         
         return pinView
     }
