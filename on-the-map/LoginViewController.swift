@@ -55,7 +55,13 @@ class LoginViewController: UIViewController {
         let email = emailTextfield.text!
         let password = passwordTextfield.text!
         
+        disableUI()
+        UIUtils.showProgressIndicator()
         UDAClient.sharedInstance().loginAndData(email: email, password: password) { (user, errorMessage) in
+           
+            self.enableUI()
+            UIUtils.hideProgressIndicator()
+            
             if errorMessage == nil {
                 AppDelegate.sharedInstance().currentUser = user
                 self.navigateToMap()
@@ -64,4 +70,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    func disableUI(){
+        self.view.isUserInteractionEnabled = false
+    }
+    func enableUI(){
+        self.view.isUserInteractionEnabled = true
+    }
+    
 }
