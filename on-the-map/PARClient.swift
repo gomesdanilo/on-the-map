@@ -69,6 +69,25 @@ class PARClient: NSObject {
         return students
     }
     
+    func retrieveLatestStudentLocations(completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void){
+    
+        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&-updatedAt")
+        
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                completionHandler(nil, "Failed to retrieve data")
+                return
+            }
+            let jsonString = self.getJsonString(data: data)
+            let students = self.parseStudentsJson(json: jsonString)
+            
+            DispatchQueue.main.async {
+                completionHandler(students, nil)
+            }
+        }
+        task.resume()
+    }
+    
     
     func retrieveStudentLocations(range : CoordinatesRange, limit : Int = 100,
                                   completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void) {

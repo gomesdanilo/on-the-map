@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Shared data
     var currentUser : UDAUser?
-    var students : [StudentInformation]?
     
     var window: UIWindow?
     

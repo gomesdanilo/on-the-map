@@ -18,6 +18,11 @@ class PinListTableViewController: UITableViewController {
         currentUser = AppDelegate.sharedInstance().currentUser
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveStudents()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -55,6 +60,21 @@ class PinListTableViewController: UITableViewController {
     
     func goToLoginPage(){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func loadStudents(students:[StudentInformation]){
+        self.students = students
+        self.tableView.reloadData()
+    }
+    
+    func retrieveStudents(){
+        PARClient.sharedInstance().retrieveLatestStudentLocations { (students, error) in
+            if error != nil{
+                // Error
+                return
+            }
+            self.loadStudents(students: students!)
+        }
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
