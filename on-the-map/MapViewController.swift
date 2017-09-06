@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentUser = AppDelegate.sharedInstance().currentUser
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
@@ -151,8 +152,6 @@ extension MapViewController : MKMapViewDelegate {
             }
         }
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if "addPin" == segue.identifier {

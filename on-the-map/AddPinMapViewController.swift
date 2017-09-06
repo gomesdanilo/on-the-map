@@ -28,6 +28,8 @@ class AddPinMapViewController: UIViewController {
             showErrorMessage("Please pin a location first")
             return
         }
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
     func showErrorMessage(_ message: String?) {

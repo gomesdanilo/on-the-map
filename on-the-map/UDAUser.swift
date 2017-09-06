@@ -10,6 +10,7 @@ import UIKit
 
 struct UDAUser {
 
+    var userId : String?
     var name : String?
     var email : String?
 }

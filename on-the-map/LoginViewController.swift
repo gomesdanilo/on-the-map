@@ -16,17 +16,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     
     @IBAction func didClickOnLoginButton(_ sender: Any) {
-        print("Login clicked")
         login()
     }
-    
-    
-    
-    
-    // MARK: API Calls
     
     func validateCredentials(_ errorMessageCallback : (_ message: String) -> Void) -> Bool {
         
@@ -59,14 +52,15 @@ class LoginViewController: UIViewController {
         if !validateCredentials(showErrorMessage) {
             return
         }
+        let email = emailTextfield.text!
+        let password = passwordTextfield.text!
         
-        UDAClient.sharedInstance().login(email: emailTextfield.text!, password: passwordTextfield.text!) { (success, errorMessage) in
-            
-            if success {
-                print("login is ok")
+        UDAClient.sharedInstance().loginAndData(email: email, password: password) { (user, errorMessage) in
+            if errorMessage == nil {
+                AppDelegate.sharedInstance().currentUser = user
                 self.navigateToMap()
             } else {
-                showErrorMessage(errorMessage)
+                self.showErrorMessage(errorMessage!)
             }
         }
     }
