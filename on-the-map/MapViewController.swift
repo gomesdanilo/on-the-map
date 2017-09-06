@@ -17,7 +17,6 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadPins()
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
@@ -32,19 +31,34 @@ class MapViewController: UIViewController {
         print("add")
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
     
+    func getCoordinatesRange(map : MKMapView) -> CoordinatesRange {
+        var range = CoordinatesRange()
+        
+        range.minLat = map.region.center.latitude - (map.region.span.latitudeDelta/2.0)
+        range.maxLat = map.region.center.latitude + (map.region.span.latitudeDelta/2.0)
+        range.minLong = map.region.center.longitude + (map.region.span.longitudeDelta/2.0)
+        range.maxLong = map.region.center.longitude + (map.region.span.longitudeDelta/2.0)
+        
+        return range
+    }
     
-    func loadPins(){
-        self.retrieveData { (serverData) in
-            self.parseData(data: serverData, completionHandler: { (listPoints) in
-                self.populatesMapWithPoints(listPoints)
-            })
+    func loadPinsWithMap(map : MKMapView){
+        
+        let range = getCoordinatesRange(map:map)
+        
+        self.retrieveData(range: range) { (students, errorMessage) in
+            if errorMessage != nil {
+                // Error
+            } else {
+                self.convertStudentToAnnotation(students: students!, completionHandler: { (annotations) in
+                    self.populatesMapWithPoints(annotations)
+                })
+            }
         }
     }
     
@@ -52,34 +66,29 @@ class MapViewController: UIViewController {
         self.mapView.addAnnotations(listPoints)
     }
     
-    func retrieveData(_ completionHandler : @escaping (_ data : [[String : Any]]) -> Void) {
-        PARClient.sharedInstance().retrieveFakeData(completionHandler: completionHandler)
+    func retrieveData(range: CoordinatesRange,
+                      _ completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage: String?) -> Void) {
+        PARClient.sharedInstance().retrieveStudentLocations(range: range,
+                                                            completionHandler: completionHandler)
     }
     
-    func parseData(data: [[String : Any]],  completionHandler : @escaping (_ data : [MKPointAnnotation]) -> Void){
+    func convertStudentToAnnotation(students: [StudentInformation],  completionHandler : @escaping (_ data : [MKPointAnnotation]) -> Void){
         
-        var returnList = [MKPointAnnotation]()
-    
-        for dictionary in data {
-    
-            let lat = CLLocationDegrees(dictionary["latitude"] as! Double)
-            let long = CLLocationDegrees(dictionary["longitude"] as! Double)
-    
+        let ret = students.map { (student) -> MKPointAnnotation in
+            let lat = CLLocationDegrees(student.lat!)
+            let long = CLLocationDegrees(student.long!)
+            
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-    
-            let first = dictionary["firstName"] as! String
-            let last = dictionary["lastName"] as! String
-            let mediaURL = dictionary["mediaURL"] as! String
-    
+            
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
-            annotation.title = "\(first) \(last)"
-            annotation.subtitle = mediaURL
+            annotation.title = student.name
+            annotation.subtitle = student.mediaUrl
             
-            returnList.append(annotation)
+            return annotation
         }
         
-        completionHandler(returnList)
+        completionHandler(ret)
     }
 }
 
@@ -93,6 +102,7 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         print("regionDidChangeAnimated")
+        loadPinsWithMap(map: mapView)
     }
     
     // MARK: Managing Annotation Views
