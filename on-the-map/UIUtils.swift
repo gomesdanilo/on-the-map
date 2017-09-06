@@ -22,5 +22,12 @@ class UIUtils {
             // Results...
         })
     }
-
+    
+    static func showProgressIndicator(){
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    static func hideProgressIndicator(){
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
 }
