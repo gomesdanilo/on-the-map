@@ -11,16 +11,24 @@ import MapKit
 
 class AddPinMapViewController: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
     let reuseId = "pin"
-    var currentUser : UDAUser?
     var location : String?
     var website : String?
-    @IBOutlet weak var mapView: MKMapView!
     var locationSelected = false
+    var annotation : MKPointAnnotation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         goToLocation()
+    }
+    
+    func updateUser() {
+        AppDelegate.sharedInstance().currentUser?.location = location
+        AppDelegate.sharedInstance().currentUser?.mediaUrl = website
+        AppDelegate.sharedInstance().currentUser?.latitude = annotation!.coordinate.latitude
+        AppDelegate.sharedInstance().currentUser?.longitude = annotation!.coordinate.longitude
     }
     
     @IBAction func didTapOnConfirmButton(_ sender: Any) {
@@ -28,7 +36,7 @@ class AddPinMapViewController: UIViewController {
             showErrorMessage("Please pin a location first")
             return
         }
-        
+        updateUser()
         self.navigationController?.popToRootViewController(animated: true)
     }
 
@@ -65,9 +73,9 @@ class AddPinMapViewController: UIViewController {
     // MARK: - Annotations
     
     func placeAnnotation(_ place : MKPlacemark){
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = place.coordinate
-        self.mapView.addAnnotation(annotation)
+        annotation = MKPointAnnotation()
+        annotation!.coordinate = place.coordinate
+        self.mapView.addAnnotation(annotation!)
     }
     
     func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {

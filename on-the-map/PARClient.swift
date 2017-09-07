@@ -24,12 +24,15 @@ class PARClient: NSObject {
         return ["X-Parse-Application-Id":"QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr",
                 "X-Parse-REST-API-Key" : "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"]
     }
-
-    func applySecurityHeaders(request : NSMutableURLRequest){
-        let headers = getSecurityHeaders()
+    
+    func applyHeaders(_ headers : [String:String], request : NSMutableURLRequest){
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.key)
         }
+    }
+
+    func applySecurityHeaders(request : NSMutableURLRequest){
+        applyHeaders(getSecurityHeaders(), request: request)
     }
     
     func createRequestWithUrl(_ url : String) -> NSMutableURLRequest {
@@ -106,6 +109,37 @@ class PARClient: NSObject {
             
             DispatchQueue.main.async {
                 completionHandler(students, nil)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    
+    
+    func buildSaveBody(user : UDAUser) -> Data? {
+        let jsonString = user.json()
+        let data = jsonString?.data(using: String.Encoding.utf8)
+        return data
+    }
+    
+    func saveStudentLocation(user : UDAUser,
+                             completionHandler : @escaping (_ success : Bool, _ errorMessage : String?) -> Void) {
+        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation")
+        request.httpMethod = "POST"
+        applyHeaders(["Content-Type":"application/json"], request: request)
+        
+        request.httpBody = buildSaveBody(user: user)
+        
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                completionHandler(false, "Failed to retrieve data")
+                return
+            }
+            let jsonString = self.getJsonString(data: data)
+            
+            DispatchQueue.main.async {
+                completionHandler(true, nil)
             }
         }
         task.resume()

@@ -26,7 +26,7 @@ class AddPinViewController: UIViewController {
     }
     
     func updateUserName(){
-        if let user = currentUser?.name {
+        if let user = currentUser?.fullname {
             self.nameLabel.text = user
         } else {
             self.nameLabel.text = "< Name >"
@@ -71,7 +71,6 @@ class AddPinViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segueAddPinOnMap == segue.identifier {
             if let vc = segue.destination as? AddPinMapViewController {
-                vc.currentUser = currentUser
                 vc.location = self.locationTextfield.text!
                 vc.website = self.websiteTextfield.text!
             }

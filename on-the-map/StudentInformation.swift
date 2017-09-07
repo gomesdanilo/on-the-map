@@ -24,12 +24,25 @@ struct StudentInformation {
         let first = dictionary["firstName"] as? String
         let last = dictionary["lastName"] as? String
         
-        if first != nil && last != nil {
-            self.name = "\(first!) \(last!)"
+        name = StudentInformation.parseName(first: first, last: last)
+    }
+    
+    private static func parseName(first: String?, last: String?) -> String {
+        var name = ""
+        if let first = first {
+            name.append(first)
         }
-        else {
-            self.name = "N/A"
+        
+        if let last = last {
+            name.append(" ")
+            name.append(last)
         }
+        
+        if name.characters.count == 0 {
+            name = "N/A"
+        }
+        
+        return name
     }
 }
 

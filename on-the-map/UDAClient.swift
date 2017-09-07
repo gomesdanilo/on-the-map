@@ -167,6 +167,7 @@ class UDAClient: NSObject {
         task.resume()
     }
     
+    
     private func getUserInfo(userId:String, email: String,
                      completionHandler : @escaping (_ user : UDAUser?, _ errorMessage : String?) -> Void) {
         let request = NSMutableURLRequest(url: getUrl("/users/\(userId)"))
@@ -192,7 +193,9 @@ class UDAClient: NSObject {
                     }
                     
                     var user = UDAUser()
-                    user.name = fullName
+                    user.firstName = firstName
+                    user.lastName = lastName
+                    user.fullname = fullName
                     user.userId = userId
                     user.email = email
                     completionHandler(user, nil)
