@@ -27,6 +27,8 @@
 		997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE91F6045A400564334 /* PinListTableViewCell.swift */; };
 		99B562991F61589E00DC587A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562981F61589E00DC587A /* Constants.swift */; };
 		99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */; };
+		99B562A41F61695300DC587A /* AddLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A31F61695300DC587A /* AddLocationResponse.swift */; };
+		99B562A61F616EEF00DC587A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A51F616EEF00DC587A /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		997A5CE91F6045A400564334 /* PinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewCell.swift; sourceTree = "<group>"; };
 		99B562981F61589E00DC587A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinGeocodeController.swift; sourceTree = "<group>"; };
+		99B562A31F61695300DC587A /* AddLocationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationResponse.swift; sourceTree = "<group>"; };
+		99B562A51F616EEF00DC587A /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				9928D7071F5F11D50072EEEE /* Clients */,
+				99B562A51F616EEF00DC587A /* UserData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				997A5CDB1F60184000564334 /* CoordinatesRange.swift */,
 				9928D71E1F5F35A80072EEEE /* StudentInformation.swift */,
 				9928D71C1F5F233B0072EEEE /* PARClient.swift */,
+				99B562A31F61695300DC587A /* AddLocationResponse.swift */,
 			);
 			name = "Udemy Parse";
 			sourceTree = "<group>";
@@ -296,8 +302,10 @@
 				997A5CE41F60367B00564334 /* AddPinMapViewController.swift in Sources */,
 				9928D71F1F5F35A80072EEEE /* StudentInformation.swift in Sources */,
 				997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */,
+				99B562A61F616EEF00DC587A /* UserData.swift in Sources */,
 				9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */,
 				99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */,
+				99B562A41F61695300DC587A /* AddLocationResponse.swift in Sources */,
 				997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */,
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
 				997A5CE01F601B0F00564334 /* WebUtils.swift in Sources */,

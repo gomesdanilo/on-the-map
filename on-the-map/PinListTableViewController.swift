@@ -10,25 +10,16 @@ import UIKit
 
 class PinListTableViewController: UITableViewController {
 
-    var currentUser : UDAUser?
-    var students : [StudentInformation]?
+    var userData : UserData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentUser = AppDelegate.sharedInstance().currentUser
+        userData = AppDelegate.sharedInstance().userData
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         retrieveStudents()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if "addPin" == segue.identifier {
-            if let vc = segue.destination as? AddPinViewController {
-                vc.currentUser = self.currentUser
-            }
-        }
     }
     
     func openBrowserWithStudent(_ student : StudentInformation){
@@ -42,7 +33,7 @@ class PinListTableViewController: UITableViewController {
     }
     
     func loadStudents(students:[StudentInformation]){
-        self.students = students
+        userData.latestStudents = students
         self.tableView.reloadData()
     }
     
@@ -68,7 +59,7 @@ class PinListTableViewController: UITableViewController {
                 return
             }
             
-            AppDelegate.sharedInstance().currentUser = nil
+            self.userData.loggedInUser = nil
             self.goToLoginPage()
         }
     }
@@ -83,18 +74,19 @@ extension PinListTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students != nil ? students!.count : 0
+        
+        return userData.latestStudents != nil ? userData.latestStudents!.count : 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let student = students![indexPath.row]
+        let student = userData.latestStudents![indexPath.row]
         openBrowserWithStudent(student)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PinListTableViewCell
-        let row = students![indexPath.row]
+        let row = userData.latestStudents![indexPath.row]
         cell.populateWithStudent(row)
         
         return cell

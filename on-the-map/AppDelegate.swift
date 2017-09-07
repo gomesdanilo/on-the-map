@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Shared data
-    var currentUser : UDAUser?
+    var userData = UserData()
     
     var window: UIWindow?
     

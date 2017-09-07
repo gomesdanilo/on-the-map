@@ -12,9 +12,11 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
+    var userData : UserData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userData = AppDelegate.sharedInstance().userData
     }
     
     @IBAction func didClickOnLoginButton(_ sender: Any) {
@@ -60,7 +62,7 @@ class LoginViewController: UIViewController {
             UIUtils.hideProgressIndicator()
             
             if errorMessage == nil {
-                AppDelegate.sharedInstance().currentUser = user
+                self.userData.loggedInUser = user
                 self.navigateToMap()
             } else {
                 self.showErrorMessage(errorMessage!)

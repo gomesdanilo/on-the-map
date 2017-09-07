@@ -30,15 +30,26 @@ struct UDAUser {
     
     func json() -> String?{
         
+        guard let userId = self.userId,
+            let firstName = self.firstName,
+            let lastName = self.lastName,
+            let location = self.location,
+            let mediaUrl = self.mediaUrl,
+            let latitude = self.latitude,
+            let longitude = self.longitude else {
+            // Invalid parameters
+            return nil
+        }
+        
         let json = [
-            "uniqueKey": self.userId,
-            "firstName": self.firstName,
-            "lastName":  self.lastName,
-            "mapString": self.location,
-            "mediaURL": self.mediaUrl,
-            "latitude": self.latitude,
-            "longitude": self.longitude
-            ] as [String : Any?]
+            "uniqueKey": userId,
+            "firstName": firstName,
+            "lastName":  lastName,
+            "mapString": location,
+            "mediaURL": mediaUrl,
+            "latitude": latitude,
+            "longitude": longitude
+            ] as [String : Any]
         
         let jsonString = JsonUtil.mapToJsonString(map: json)
         return jsonString

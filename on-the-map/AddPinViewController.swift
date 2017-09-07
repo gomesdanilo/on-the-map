@@ -15,18 +15,19 @@ class AddPinViewController: UIViewController {
     @IBOutlet weak var websiteTextfield: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     
-    var currentUser : UDAUser?
     let segueAddPinOnMap = "addPinOnMap"
     let geocoder = AddPinGeocodeController()
     var coordinates : CLLocationCoordinate2D?
+    var userData : UserData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userData = AppDelegate.sharedInstance().userData
         updateUserName()
     }
     
     func updateUserName(){
-        if let user = currentUser?.fullname {
+        if let user = userData.loggedInUser?.fullname {
             self.nameLabel.text = user
         } else {
             self.nameLabel.text = "< Name >"

@@ -11,14 +11,14 @@ import MapKit
 
 class MapViewController: UIViewController {
 
-    var currentUser : UDAUser?
+    var userData : UserData!
     let reuseId = "pin"
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentUser = AppDelegate.sharedInstance().currentUser
+        userData = AppDelegate.sharedInstance().userData
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
@@ -29,7 +29,7 @@ class MapViewController: UIViewController {
                 return
             }
             
-            AppDelegate.sharedInstance().currentUser = nil
+            self.userData.loggedInUser = nil
             self.goToLoginPage()
         }
     }
@@ -66,6 +66,7 @@ class MapViewController: UIViewController {
             if errorMessage != nil {
                 // Error
             } else {
+                self.userData.studentsPerRegion = students
                 self.convertStudentToAnnotation(students: students!, completionHandler: { (annotations) in
                     self.populatesMapWithPoints(annotations)
                 })
@@ -106,20 +107,6 @@ class MapViewController: UIViewController {
     func reloadMap(){
         loadPinsWithMap(map: self.mapView)
     }
-}
-
-extension MapViewController : MKMapViewDelegate {
-
-    // MARK: Responding to Map Position Changes
-    
-    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        print("regionWillChangeAnimated")
-    }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print("regionDidChangeAnimated")
-        loadPinsWithMap(map: mapView)
-    }
     
     // MARK: Managing Annotation Views
     
@@ -135,6 +122,15 @@ extension MapViewController : MKMapViewDelegate {
     func populateAnnotationPin(annotation: MKAnnotation, pin : MKAnnotationView){
         pin.annotation = annotation
     }
+}
+
+extension MapViewController : MKMapViewDelegate {
+
+    // MARK: Responding to Map Position Changes
+
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        loadPinsWithMap(map: mapView)
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -147,7 +143,6 @@ extension MapViewController : MKMapViewDelegate {
         return pinView
     }
     
-    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if control != view.rightCalloutAccessoryView {
@@ -157,14 +152,6 @@ extension MapViewController : MKMapViewDelegate {
 //        if let website = view.annotation?.subtitle {
 //            UIUtils.openWebsite(url: website)
 //        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if "addPin" == segue.identifier {
-            if let vc = segue.destination as? AddPinViewController {
-                vc.currentUser = self.currentUser
-            }
-        }
     }
 }
 

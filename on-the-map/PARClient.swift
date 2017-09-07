@@ -125,21 +125,37 @@ class PARClient: NSObject {
     
     func saveStudentLocation(user : UDAUser,
                              completionHandler : @escaping (_ success : Bool, _ errorMessage : String?) -> Void) {
+        
         let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation")
         request.httpMethod = "POST"
         applyHeaders(["Content-Type":"application/json"], request: request)
         
-        request.httpBody = buildSaveBody(user: user)
+        guard let bodyData = buildSaveBody(user: user) else {
+            completionHandler(false, "Invalid request parameters")
+            return
+        }
+        
+         request.httpBody = bodyData
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
                 completionHandler(false, "Failed to retrieve data")
                 return
             }
-            let jsonString = self.getJsonString(data: data)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                if error != nil {
+                    completionHandler(false, "Failed to retrieve data")
+                }
+                return
+            }
             
             DispatchQueue.main.async {
-                completionHandler(true, nil)
+                if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
+                    completionHandler(true, nil)
+                } else {
+                    completionHandler(false, "Failed to save location")
+                }
             }
         }
         task.resume()

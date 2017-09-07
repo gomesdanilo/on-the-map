@@ -12,15 +12,17 @@ import MapKit
 class AddPinMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    
     let reuseId = "pin"
     var location : String?
     var website : String?
     var annotation : MKPointAnnotation?
     var coordinates : CLLocationCoordinate2D?
+    var userData : UserData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userData = AppDelegate.sharedInstance().userData
         
         if let coord = coordinates {
             goToLocation(coodinates: coord)
@@ -29,18 +31,33 @@ class AddPinMapViewController: UIViewController {
     }
     
     func updateUser() {
-        // TODO: Check this
-        // This code is dupicated because we can't keep reference for user. It's a struct...
-        AppDelegate.sharedInstance().currentUser?.location = location
-        AppDelegate.sharedInstance().currentUser?.mediaUrl = website
-        AppDelegate.sharedInstance().currentUser?.latitude = annotation!.coordinate.latitude
-        AppDelegate.sharedInstance().currentUser?.longitude = annotation!.coordinate.longitude
+        userData.loggedInUser?.location = location
+        userData.loggedInUser?.mediaUrl = website
+        userData.loggedInUser?.latitude = annotation!.coordinate.latitude
+        userData.loggedInUser?.longitude = annotation!.coordinate.longitude
     }
     
     @IBAction func didTapOnConfirmButton(_ sender: Any) {
+        
         updateUser()
+        saveLocationOnServer { (success, errorMessage) in
+            if success {
+                self.returnToMainScreen()
+            } else {
+                self.showErrorMessage(errorMessage!)
+            }
+        }
+    }
+    
+    func saveLocationOnServer(completionHandler : @escaping (_ success : Bool, _ errorMessage : String?) -> Void){
+        PARClient.sharedInstance().saveStudentLocation(user: userData.loggedInUser!,
+                                                       completionHandler: completionHandler)
+    }
+    
+    func returnToMainScreen(){
         self.navigationController?.popToRootViewController(animated: true)
     }
+    
 
     func showErrorMessage(_ message: String?) {
         UIUtils.showErrorMessage(message, viewController: self)
