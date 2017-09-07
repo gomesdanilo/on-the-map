@@ -33,5 +33,6 @@ struct Constants {
     
     struct Msg {
         static let failedToRetrieveLocationData = "Failed to retrieve location data"
+        static let failedToSaveLocation = "Failed to save location"
     }
 }

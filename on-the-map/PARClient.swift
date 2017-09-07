@@ -11,10 +11,10 @@ import UIKit
 class PARClient: NSObject {
     
     typealias StudentLocationCallback = (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void
-    
+    typealias StudentSafeLocationCallback = (_ success : Bool, _ errorMessage : String?) -> Void
 
     let session = URLSession.shared
-    let baseUrl = "https://www.udacity.com/api"
+    let baseUrl = "https://parse.udacity.com"
     
     class func sharedInstance() -> PARClient {
         struct Singleton {
@@ -38,8 +38,11 @@ class PARClient: NSObject {
         applyHeaders(getSecurityHeaders(), request: request)
     }
     
-    func createRequestWithUrl(_ url : String) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(url: URL(string: url)!)
+    func createRequestWithUrl(path : String, method : String = "GET") -> NSMutableURLRequest {
+        
+        let fullUrl = baseUrl.appending(path)
+        let url = URL(string: fullUrl)!
+        let request = NSMutableURLRequest(url: url)
         applySecurityHeaders(request: request)
         return request
     }
@@ -134,7 +137,7 @@ class PARClient: NSObject {
     
     func retrieveLatestStudentLocations(completionHandler :@escaping StudentLocationCallback){
     
-        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")
+        let request = createRequestWithUrl(path: "/parse/classes/StudentLocation?limit=100&order=-updatedAt")
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
@@ -150,7 +153,7 @@ class PARClient: NSObject {
     
         let rangeParams = range.getParseEscapedJson()
         
-        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt&where=\(rangeParams)")
+        let request = createRequestWithUrl(path: "/parse/classes/StudentLocation?limit=100&order=-updatedAt&where=\(rangeParams)")
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
@@ -169,40 +172,56 @@ class PARClient: NSObject {
         return data
     }
     
-    func saveStudentLocation(user : UDAUser,
-                             completionHandler : @escaping (_ success : Bool, _ errorMessage : String?) -> Void) {
+    func handleSaveLocationServerResponse(data: Data?, response: URLResponse?,
+                                      error : Error?, completionHandler : @escaping StudentSafeLocationCallback) {
         
-        let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation")
-        request.httpMethod = "POST"
+        DispatchQueue.main.async {
+            
+            // Validates sdk error
+            guard error == nil else {
+                completionHandler(false, Constants.Msg.failedToSaveLocation)
+                return
+            }
+            
+            // Validates resp type error
+            guard let resp = response as? HTTPURLResponse else {
+                completionHandler(false, Constants.Msg.failedToSaveLocation)
+                return
+            }
+            
+            // Validates status code error
+            guard resp.statusCode == 200 || resp.statusCode == 201 else {
+                let descHttp = HTTPURLResponse.localizedString(forStatusCode: resp.statusCode)
+                let serverError = self.getServerError(data)
+                let message = "\(Constants.Msg.failedToSaveLocation): Details: (\(descHttp) | \(serverError))"
+                completionHandler(false, message)
+                return
+            }
+            
+            // Success
+            completionHandler(true, nil)
+        }
+    }
+    
+    
+    func saveStudentLocation(user : UDAUser,
+                             completionHandler : @escaping StudentSafeLocationCallback) {
+        
+        let request = createRequestWithUrl(path: "/parse/classes/StudentLocation", method: "POST")
         applyHeaders(["Content-Type":"application/json"], request: request)
         
         guard let bodyData = buildSaveBody(user: user) else {
-            completionHandler(false, "Invalid request parameters")
+            self.handleSaveLocationServerResponse(data:nil, response: nil,
+                                                  error: nil, completionHandler: completionHandler)
             return
         }
         
          request.httpBody = bodyData
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                completionHandler(false, "Failed to retrieve data")
-                return
-            }
             
-            guard let httpResponse = response as? HTTPURLResponse else {
-                if error != nil {
-                    completionHandler(false, "Failed to retrieve data")
-                }
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
-                    completionHandler(true, nil)
-                } else {
-                    completionHandler(false, "Failed to save location")
-                }
-            }
+            self.handleSaveLocationServerResponse(data:data, response: response,
+                                                  error: error, completionHandler: completionHandler)
         }
         task.resume()
     }
