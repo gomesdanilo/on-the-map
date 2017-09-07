@@ -36,12 +36,16 @@ class PinListTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    func showErrorMessage(_ message : String) {
+        UIUtils.showErrorMessage(message, viewController: self)
+    }
+    
     func retrieveStudents(){
         UIUtils.showProgressIndicator()
         PARClient.sharedInstance().retrieveLatestStudentLocations { (students, error) in
             UIUtils.hideProgressIndicator()
             if error != nil{
-                // Error
+                self.showErrorMessage(error!)
                 return
             }
             self.loadStudents(students: students!)
