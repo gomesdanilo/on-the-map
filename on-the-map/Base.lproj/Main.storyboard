@@ -326,7 +326,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ivB-JH-3Bp" userLabel="container form">
-                                <rect key="frame" x="38" y="94" width="300" height="257.5"/>
+                                <rect key="frame" x="38" y="94" width="300" height="287.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="58A-Yl-t51" userLabel="container labels">
                                         <rect key="frame" x="72.5" y="0.0" width="155.5" height="20.5"/>
@@ -349,7 +349,7 @@
                                         <rect key="frame" x="124" y="50.5" width="52" height="67"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YP1-JH-aCb" userLabel="container inputs">
-                                        <rect key="frame" x="0.0" y="147.5" width="300" height="110"/>
+                                        <rect key="frame" x="0.0" y="147.5" width="300" height="140"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hn0-23-YyL">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -374,6 +374,9 @@
                                                     <action selector="didClickOnFindLocation:" destination="oQS-wk-0lO" eventType="touchUpInside" id="d9e-0K-CFX"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dMB-NJ-ozv">
+                                                <rect key="frame" x="0.0" y="120" width="300" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="MKP-pR-sMe"/>
@@ -389,6 +392,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="dMB-NJ-ozv" id="0dU-BM-NYw"/>
                         <outlet property="locationTextfield" destination="hn0-23-YyL" id="SoC-z9-gzX"/>
                         <outlet property="nameLabel" destination="lrv-ff-yIz" id="ZHI-ra-yb4"/>
                         <outlet property="websiteTextfield" destination="0fR-4d-jpR" id="ear-TJ-bvv"/>

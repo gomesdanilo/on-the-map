@@ -15,6 +15,7 @@ class AddPinViewController: UIViewController {
     @IBOutlet weak var websiteTextfield: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let geocoder = AddPinGeocodeController()
     var coordinates : CLLocationCoordinate2D?
@@ -75,9 +76,9 @@ class AddPinViewController: UIViewController {
     
     func searchAddressGeocode(){
     
-        UIUtils.showProgressIndicator()
+        showLoadingUI()
         geocoder.findCoordinates(withAddress: locationTextfield.text!) { (coordinates, errorMessage) in
-            UIUtils.hideProgressIndicator()
+            self.hideLoadingUI()
             if errorMessage != nil {
                 self.showErrorMessage(errorMessage!)
                 return
@@ -110,4 +111,17 @@ class AddPinViewController: UIViewController {
         super.viewWillDisappear(animated)
         keyboardController?.unsubscribeToKeyboardNotifications()
     }
+    
+    func showLoadingUI(){
+        view.isUserInteractionEnabled = false
+        UIUtils.showProgressIndicator()
+        activityIndicator?.startAnimating()
+    }
+    
+    func hideLoadingUI(){
+        view.isUserInteractionEnabled = true
+        UIUtils.hideProgressIndicator()
+        activityIndicator?.stopAnimating()
+    }
+    
 }
