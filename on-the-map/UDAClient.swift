@@ -114,7 +114,7 @@ class UDAClient: NSObject {
     private func login(email:String, password:String,
                completionHandler : @escaping (_ user : UDAUser?, _ errorMessage : String?) -> Void) {
         
-        let request = buildRequest(path: "/session", method: "POST")
+        let request = buildRequest(path: "/session", method: Constants.Http.POST)
         applyHeaders(headers: getJsonHeaders(), request: request)
         request.httpBody = getPostDataForLogin(email: email, password: password)
         
@@ -126,29 +126,21 @@ class UDAClient: NSObject {
                 return
             }
             
-            if let dic = self.parseJsonMessage(data:data) {
-                if let account = dic["account"] as? [String: Any?] {
-                    let key = account["key"] as? String
-                    var user = UDAUser()
-                    user.userId = key
-                    completionHandler(user, nil)
-                    return
-                }
-                
-                if let error = dic["error"] as? String {
-                    completionHandler(nil, error)
-                    return
-                }
-            }
+            var user = UDAUser.parseWithLogin(dictionary : self.parseJsonMessage(data:data))
             
-            completionHandler(nil, "Failed to login")
+            if user.loggedIn {
+                user.email = email
+                completionHandler(user, nil)
+            } else {
+                completionHandler(nil, user.errorMessage!)
+            }
         }
         
         task.resume()
     }
     
     func logout(completionHandler : @escaping (_ success : Bool,_ errorMessage : String?) -> Void){
-        let request = buildRequest(path: "/session", method: "DELETE")
+        let request = buildRequest(path: "/session", method: Constants.Http.DELETE)
         applyHeaders(headers: getSecurityHeaders(), request: request)
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
@@ -167,10 +159,10 @@ class UDAClient: NSObject {
         task.resume()
     }
     
-    
     private func getUserInfo(userId:String, email: String,
                      completionHandler : @escaping (_ user : UDAUser?, _ errorMessage : String?) -> Void) {
-        let request = NSMutableURLRequest(url: getUrl("/users/\(userId)"))
+        let request = buildRequest(path: "/users/\(userId)", method: Constants.Http.GET)
+        
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil {
                 // Error
@@ -178,32 +170,15 @@ class UDAClient: NSObject {
                 return
             }
             
-            if let dic = self.parseJsonMessage(data:data) {
-                if let account = dic["user"] as? [String: Any?] {
-                    let firstName = account["first_name"] as? String
-                    let lastName = account["last_name"] as? String
-                    
-                    var fullName = ""
-                    if firstName != nil{
-                        fullName.append(firstName!)
-                    }
-                    if lastName != nil{
-                        fullName.append(" ")
-                        fullName.append(lastName!)
-                    }
-                    
-                    var user = UDAUser()
-                    user.firstName = firstName
-                    user.lastName = lastName
-                    user.fullname = fullName
-                    user.userId = userId
-                    user.email = email
-                    completionHandler(user, nil)
-                    return
-                }
-            }
+            var user = UDAUser.parseWithDetails(dictionary : self.parseJsonMessage(data:data))
             
-            completionHandler(nil, "Failed to retrieve user data")
+            if user != nil {
+                user?.email = email
+                user?.userId = userId
+                completionHandler(user, nil)
+            } else {
+                completionHandler(nil, "Failed to retrieve user details")
+            }
         }
         task.resume()
     }

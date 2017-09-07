@@ -25,6 +25,7 @@
 		997A5CE41F60367B00564334 /* AddPinMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE31F60367B00564334 /* AddPinMapViewController.swift */; };
 		997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE51F603ADD00564334 /* UIUtils.swift */; };
 		997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE91F6045A400564334 /* PinListTableViewCell.swift */; };
+		99B562991F61589E00DC587A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562981F61589E00DC587A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		997A5CE31F60367B00564334 /* AddPinMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinMapViewController.swift; sourceTree = "<group>"; };
 		997A5CE51F603ADD00564334 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		997A5CE91F6045A400564334 /* PinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewCell.swift; sourceTree = "<group>"; };
+		99B562981F61589E00DC587A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				997A5CDD1F60197100564334 /* JsonUtil.swift */,
 				997A5CDF1F601B0F00564334 /* WebUtils.swift */,
 				997A5CE51F603ADD00564334 /* UIUtils.swift */,
+				99B562981F61589E00DC587A /* Constants.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */,
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
 				997A5CE01F601B0F00564334 /* WebUtils.swift in Sources */,
+				99B562991F61589E00DC587A /* Constants.swift in Sources */,
 				997A5CDC1F60184000564334 /* CoordinatesRange.swift in Sources */,
 				997A5CE21F6033C200564334 /* UDAUser.swift in Sources */,
 				9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */,
