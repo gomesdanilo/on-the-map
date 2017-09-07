@@ -19,11 +19,18 @@ class AddPinViewController: UIViewController {
     let geocoder = AddPinGeocodeController()
     var coordinates : CLLocationCoordinate2D?
     var userData : UserData!
+    var keyboardController : KeyboardController?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userData = AppDelegate.sharedInstance().userData
         updateUserName()
+        
+        keyboardController = KeyboardController()
+        keyboardController?.viewController = self
+        keyboardController?.manageTextField(locationTextfield!)
+        keyboardController?.manageTextField(websiteTextfield!)
     }
     
     func updateUserName(){
@@ -91,5 +98,15 @@ class AddPinViewController: UIViewController {
                 vc.coordinates = self.coordinates!
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardController?.subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardController?.unsubscribeToKeyboardNotifications()
     }
 }

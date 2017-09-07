@@ -13,10 +13,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     var userData : UserData!
+    var keyboardController : KeyboardController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userData = AppDelegate.sharedInstance().userData
+        
+        keyboardController = KeyboardController()
+        keyboardController?.viewController = self
+        keyboardController?.manageTextField(emailTextfield!)
+        keyboardController?.manageTextField(passwordTextfield!)
     }
     
     @IBAction func didClickOnLoginButton(_ sender: Any) {
@@ -72,5 +78,15 @@ class LoginViewController: UIViewController {
     
     @IBAction func didClickOnSignUp(_ sender : Any) {
         UIUtils.openWebsite(url: Constants.Login.loginUrl)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardController?.subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardController?.unsubscribeToKeyboardNotifications()
     }
 }

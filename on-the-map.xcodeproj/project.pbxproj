@@ -29,6 +29,7 @@
 		99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */; };
 		99B562A41F61695300DC587A /* AddLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A31F61695300DC587A /* AddLocationResponse.swift */; };
 		99B562A61F616EEF00DC587A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A51F616EEF00DC587A /* UserData.swift */; };
+		99B562A91F6176D800DC587A /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A81F6176D800DC587A /* KeyboardController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinGeocodeController.swift; sourceTree = "<group>"; };
 		99B562A31F61695300DC587A /* AddLocationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationResponse.swift; sourceTree = "<group>"; };
 		99B562A51F616EEF00DC587A /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		99B562A81F6176D800DC587A /* KeyboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		9928D6FE1F5EF41A0072EEEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				99B562A71F6176BB00DC587A /* Shared */,
 				997A5CEB1F606D2C00564334 /* Login */,
 				997A5CEC1F606D3400564334 /* Main Map */,
 				997A5CEE1F606D4400564334 /* Table */,
@@ -227,6 +230,14 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
+		99B562A71F6176BB00DC587A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				99B562A81F6176D800DC587A /* KeyboardController.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +325,7 @@
 				997A5CE21F6033C200564334 /* UDAUser.swift in Sources */,
 				9928D7001F5EF42B0072EEEE /* LoginViewController.swift in Sources */,
 				9928D7021F5EF52B0072EEEE /* MapViewController.swift in Sources */,
+				99B562A91F6176D800DC587A /* KeyboardController.swift in Sources */,
 				9928D71D1F5F233B0072EEEE /* PARClient.swift in Sources */,
 				9928D6EB1F5EF4020072EEEE /* AppDelegate.swift in Sources */,
 				9928D7091F5F12000072EEEE /* UDAClient.swift in Sources */,
