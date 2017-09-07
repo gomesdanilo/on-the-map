@@ -38,7 +38,9 @@ class PinListTableViewController: UITableViewController {
     }
     
     func retrieveStudents(){
+        UIUtils.showProgressIndicator()
         PARClient.sharedInstance().retrieveLatestStudentLocations { (students, error) in
+            UIUtils.hideProgressIndicator()
             if error != nil{
                 // Error
                 return

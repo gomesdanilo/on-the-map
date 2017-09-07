@@ -40,7 +40,11 @@ class AddPinMapViewController: UIViewController {
     @IBAction func didTapOnConfirmButton(_ sender: Any) {
         
         updateUser()
+        
+        UIUtils.showProgressIndicator()
         saveLocationOnServer { (success, errorMessage) in
+            UIUtils.hideProgressIndicator()
+            
             if success {
                 self.returnToMainScreen()
             } else {

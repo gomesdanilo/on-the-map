@@ -61,8 +61,9 @@ class MapViewController: UIViewController {
     func loadPinsWithMap(map : MKMapView){
         
         let range = getCoordinatesRange(map:map)
-        
+        UIUtils.showProgressIndicator()
         self.retrieveData(range: range) { (students, errorMessage) in
+            UIUtils.hideProgressIndicator()
             if errorMessage != nil {
                 // Error
             } else {
