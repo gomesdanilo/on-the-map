@@ -24,9 +24,14 @@ struct Constants {
     }
 
     struct Http {
+        static let statusOk = 200
         static let GET = "GET"
         static let DELETE = "DELETE"
         static let POST = "POST"
         static let PUT = "PUT"
+    }
+    
+    struct Msg {
+        static let failedToRetrieveLocationData = "Failed to retrieve location data"
     }
 }

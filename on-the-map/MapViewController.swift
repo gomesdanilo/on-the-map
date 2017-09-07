@@ -28,12 +28,12 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func didClickOnRefresh(_ sender: Any) {
-        reloadMap()
+        requestNewLocationsForRegion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadMap()
+        requestNewLocationsForRegion()
     }
     
     
@@ -48,14 +48,18 @@ class MapViewController: UIViewController {
         return range
     }
     
-    func loadPinsWithMap(map : MKMapView){
+    func showErrorMessage(_ message: String){
+        UIUtils.showErrorMessage(message, viewController: self)
+    }
+    
+    func requestNewLocationsForRegion(){
         
-        let range = getCoordinatesRange(map:map)
+        let range = getCoordinatesRange(map:mapView)
         UIUtils.showProgressIndicator()
         self.retrieveData(range: range) { (students, errorMessage) in
             UIUtils.hideProgressIndicator()
             if errorMessage != nil {
-                // Error
+                self.showErrorMessage(errorMessage!)
             } else {
                 self.userData.studentsPerRegion = students
                 self.convertStudentToAnnotation(students: students!, completionHandler: { (annotations) in
@@ -95,9 +99,6 @@ class MapViewController: UIViewController {
         completionHandler(ret)
     }
     
-    func reloadMap(){
-        loadPinsWithMap(map: self.mapView)
-    }
     
     // MARK: Managing Annotation Views
     
@@ -122,7 +123,7 @@ extension MapViewController : MKMapViewDelegate {
     // MARK: Responding to Map Position Changes
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        loadPinsWithMap(map: mapView)
+        requestNewLocationsForRegion()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

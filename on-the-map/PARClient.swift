@@ -9,6 +9,9 @@
 import UIKit
 
 class PARClient: NSObject {
+    
+    typealias StudentLocationCallback = (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void
+    
 
     let session = URLSession.shared
     let baseUrl = "https://www.udacity.com/api"
@@ -54,15 +57,14 @@ class PARClient: NSObject {
         return validString as String
     }
     
-    func parseStudentsJson (json : String?) -> [StudentInformation] {
-        let defaultValue = [StudentInformation]()
+    func parseStudentsJson (json : String?) -> [StudentInformation]? {
         
         guard let jsonObject = JsonUtil.jsonStringToMap(string: json) else {
-            return defaultValue
+            return nil
         }
         
         guard let results = jsonObject["results"] as? [[String : Any?]] else {
-            return defaultValue
+            return nil
         }
         
         let students = results.map { (row) -> StudentInformation in
@@ -72,44 +74,88 @@ class PARClient: NSObject {
         return students
     }
     
-    func retrieveLatestStudentLocations(completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void){
+    func getServerError(_ data : Data?) -> String{
+        let jsonString = self.getJsonString(data: data)
+        
+        guard let map = JsonUtil.jsonStringToMap(string: jsonString) else {
+            return ""
+        }
+        
+        guard let error = map["error"] as? String else {
+            return ""
+        }
+        
+        return error
+    }
+    
+    func handleLocationServerResponse(data: Data?, response: URLResponse?,
+                                      error : Error?, completionHandler : @escaping StudentLocationCallback) {
+        
+        DispatchQueue.main.async {
+            
+            // Validates sdk error
+            guard error == nil else {
+                completionHandler(nil, Constants.Msg.failedToRetrieveLocationData)
+                return
+            }
+            
+            // Validates wrong response type
+            guard let resp = response as? HTTPURLResponse else {
+                completionHandler(nil, Constants.Msg.failedToRetrieveLocationData)
+                return
+            }
+            
+            // Validates status code
+            guard resp.statusCode == Constants.Http.statusOk else {
+                let descHttp = HTTPURLResponse.localizedString(forStatusCode: resp.statusCode)
+                let serverError = self.getServerError(data)
+                completionHandler(nil, "\(Constants.Msg.failedToRetrieveLocationData): Details: (\(descHttp) | \(serverError))")
+                return
+            }
+            
+            // Validates response format json string
+            guard let jsonString = self.getJsonString(data: data) else {
+                completionHandler(nil, Constants.Msg.failedToRetrieveLocationData)
+                return
+            }
+            
+            // Validates response format students json
+            guard let students = self.parseStudentsJson(json: jsonString) else {
+                completionHandler(nil, Constants.Msg.failedToRetrieveLocationData)
+                return
+            }
+            
+            // Success
+            completionHandler(students, nil)
+        }
+    }
+    
+    
+    
+    func retrieveLatestStudentLocations(completionHandler :@escaping StudentLocationCallback){
     
         let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                completionHandler(nil, "Failed to retrieve data")
-                return
-            }
-            let jsonString = self.getJsonString(data: data)
-            let students = self.parseStudentsJson(json: jsonString)
             
-            DispatchQueue.main.async {
-                completionHandler(students, nil)
-            }
+            self.handleLocationServerResponse(data:data, response:response,
+                                              error:error, completionHandler:completionHandler)
+            
         }
         task.resume()
     }
     
     
-    func retrieveStudentLocations(range : CoordinatesRange,
-                                  completionHandler : @escaping (_ data : [StudentInformation]?, _ errorMessage : String?) -> Void) {
+    func retrieveStudentLocations(range : CoordinatesRange, completionHandler : @escaping StudentLocationCallback) {
     
         let rangeParams = range.getParseEscapedJson()
         
         let request = createRequestWithUrl("https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt&where=\(rangeParams)")
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                completionHandler(nil, "Failed to retrieve data")
-                return
-            }
-            let jsonString = self.getJsonString(data: data)
-            let students = self.parseStudentsJson(json: jsonString)
             
-            DispatchQueue.main.async {
-                completionHandler(students, nil)
-            }
+            self.handleLocationServerResponse(data:data, response:response,
+                                              error:error, completionHandler:completionHandler)
         }
         task.resume()
     }
