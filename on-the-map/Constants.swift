@@ -10,8 +10,17 @@ import UIKit
 
 struct Constants {
     
+    static let minimumNumberCharactersInput = 4
+    static let reuseCellIdentifier = "cell"
+    static let reuseAnnotationIdentifier = "pin"
+    
     struct Login {
         static let loginUrl = "https://auth.udacity.com/sign-in?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated"
+    }
+    
+    struct Segue {
+        static let showMap =  "showMap"
+        static let addPinOnMap = "addPinOnMap"
     }
 
     struct Http {

@@ -12,7 +12,6 @@ import MapKit
 class AddPinMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    let reuseId = "pin"
     var location : String?
     var website : String?
     var annotation : MKPointAnnotation?
@@ -82,6 +81,7 @@ class AddPinMapViewController: UIViewController {
     }
     
     func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
+        let reuseId = Constants.reuseAnnotationIdentifier
         let newPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         newPin.isDraggable = true
         newPin.animatesDrop = true
@@ -97,6 +97,7 @@ extension AddPinMapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        let reuseId = Constants.reuseAnnotationIdentifier
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if pinView == nil {
             pinView = buildNewAnnotationPin(annotation: annotation)

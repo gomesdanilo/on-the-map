@@ -15,7 +15,7 @@ class AddPinViewController: UIViewController {
     @IBOutlet weak var websiteTextfield: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     
-    let segueAddPinOnMap = "addPinOnMap"
+    
     let geocoder = AddPinGeocodeController()
     var coordinates : CLLocationCoordinate2D?
     var userData : UserData!
@@ -42,7 +42,8 @@ class AddPinViewController: UIViewController {
     }
     
     func isTextFieldValid(_ textField : UITextField) -> Bool{
-        return textField.text != nil && textField.text!.characters.count > 4
+        return textField.text != nil &&
+            textField.text!.characters.count > Constants.minimumNumberCharactersInput
     }
     
     func isUserInpuValid(_ completionHandler : (String) -> Void) -> Bool{
@@ -87,11 +88,11 @@ class AddPinViewController: UIViewController {
     
     func goToAddPinOnMapScreen(coordinates : CLLocationCoordinate2D){
         self.coordinates = coordinates
-        self.performSegue(withIdentifier: segueAddPinOnMap, sender: self)
+        self.performSegue(withIdentifier: Constants.Segue.addPinOnMap, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segueAddPinOnMap == segue.identifier {
+        if Constants.Segue.addPinOnMap == segue.identifier {
             if let vc = segue.destination as? AddPinMapViewController {
                 vc.location = self.locationTextfield.text!
                 vc.website = self.websiteTextfield.text!

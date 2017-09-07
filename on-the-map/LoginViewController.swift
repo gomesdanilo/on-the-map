@@ -34,7 +34,8 @@ class LoginViewController: UIViewController {
     func validateCredentials(_ errorMessageCallback : (_ message: String) -> Void) -> Bool {
         
         let isTextValid = {(txt : UITextField) in
-            return txt.text != nil && txt.text!.characters.count > 4
+            return txt.text != nil &&
+                txt.text!.characters.count > Constants.minimumNumberCharactersInput
         }
         
         if !isTextValid(emailTextfield) {
@@ -55,7 +56,7 @@ class LoginViewController: UIViewController {
     }
     
     func navigateToMap(){
-        self.performSegue(withIdentifier: "showMap", sender: self)
+        self.performSegue(withIdentifier: Constants.Segue.showMap, sender: self)
     }
     
     func login(){

@@ -12,7 +12,6 @@ import MapKit
 class MapViewController: UIViewController {
 
     var userData : UserData!
-    let reuseId = "pin"
     
     var logoutController : LogoutController?
     
@@ -29,7 +28,6 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func didClickOnRefresh(_ sender: Any) {
-        print("refresh")
         reloadMap()
     }
     
@@ -105,6 +103,7 @@ class MapViewController: UIViewController {
     
     func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
         
+        let reuseId = Constants.reuseAnnotationIdentifier
         let newPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         newPin.canShowCallout = true
         newPin.pinTintColor = MKPinAnnotationView.greenPinColor()
@@ -128,6 +127,7 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        let reuseId = Constants.reuseAnnotationIdentifier
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if pinView == nil {
             pinView = buildNewAnnotationPin(annotation: annotation)

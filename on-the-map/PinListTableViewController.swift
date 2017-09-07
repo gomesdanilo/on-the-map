@@ -77,7 +77,8 @@ extension PinListTableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PinListTableViewCell
+        let key = Constants.reuseCellIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: key) as! PinListTableViewCell
         let row = userData.latestStudents![indexPath.row]
         cell.populateWithStudent(row)
         
