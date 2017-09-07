@@ -1,8 +1,12 @@
 On The Map
 Project Submission for the course NanoDegree - iOS Developer at Udacity
 
+This app allows users to place pins on a map, shared by students in Udacity course. There is a login screen to autenticate, making sure each user is unique and real. 
 
-This app allows users to place pins on a map, shared by students in Udacity course. There is a login screen to autenticate, making sure each user is unique and real.
+Features:
+- Drag the map to see more annotations
+- Map/Grid view
+- Add annotations using your udacity account
 
 Requirements:
 https://review.udacity.com/#!/projects/3071699113/rubric
@@ -22,9 +26,4 @@ Specs
 
 ![](/Screenshots/05.png)
 
-![](/Screenshots/06.png)
-
-![](/Screenshots/07.png)
-
-![](/Screenshots/08.png)
 
