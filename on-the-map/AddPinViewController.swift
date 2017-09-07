@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class AddPinViewController: UIViewController {
 
@@ -15,13 +16,12 @@ class AddPinViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     var currentUser : UDAUser?
-    
     let segueAddPinOnMap = "addPinOnMap"
-    
+    let geocoder = AddPinGeocodeController()
+    var coordinates : CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateUserName()
     }
     
@@ -60,11 +60,25 @@ class AddPinViewController: UIViewController {
         }
         
         if valid {
-            self.goToAddPinOnMapScreen()
+            searchAddressGeocode()
         }
     }
     
-    func goToAddPinOnMapScreen(){
+    func searchAddressGeocode(){
+    
+        UIUtils.showProgressIndicator()
+        geocoder.findCoordinates(withAddress: locationTextfield.text!) { (coordinates, errorMessage) in
+            UIUtils.hideProgressIndicator()
+            if errorMessage != nil {
+                self.showErrorMessage(errorMessage!)
+                return
+            }
+            self.goToAddPinOnMapScreen(coordinates: coordinates!)
+        }
+    }
+    
+    func goToAddPinOnMapScreen(coordinates : CLLocationCoordinate2D){
+        self.coordinates = coordinates
         self.performSegue(withIdentifier: segueAddPinOnMap, sender: self)
     }
     
@@ -73,6 +87,7 @@ class AddPinViewController: UIViewController {
             if let vc = segue.destination as? AddPinMapViewController {
                 vc.location = self.locationTextfield.text!
                 vc.website = self.websiteTextfield.text!
+                vc.coordinates = self.coordinates!
             }
         }
     }

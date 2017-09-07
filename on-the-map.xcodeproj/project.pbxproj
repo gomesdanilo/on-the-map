@@ -26,6 +26,7 @@
 		997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE51F603ADD00564334 /* UIUtils.swift */; };
 		997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE91F6045A400564334 /* PinListTableViewCell.swift */; };
 		99B562991F61589E00DC587A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562981F61589E00DC587A /* Constants.swift */; };
+		99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		997A5CE51F603ADD00564334 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		997A5CE91F6045A400564334 /* PinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewCell.swift; sourceTree = "<group>"; };
 		99B562981F61589E00DC587A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinGeocodeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		9928D7071F5F11D50072EEEE /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				99B5629C1F615EB700DC587A /* Shared */,
 				9928D71B1F5F23270072EEEE /* Udemy Parse */,
 				9928D71A1F5F23100072EEEE /* Udemy Users */,
 			);
@@ -188,6 +191,7 @@
 		997A5CED1F606D3C00564334 /* Add Pin Flow */ = {
 			isa = PBXGroup;
 			children = (
+				99B562A21F61609300DC587A /* Tools */,
 				9928D7031F5EF5750072EEEE /* AddPinViewController.swift */,
 				997A5CE31F60367B00564334 /* AddPinMapViewController.swift */,
 			);
@@ -200,6 +204,21 @@
 				9928D7051F5EF59D0072EEEE /* PinListTableViewController.swift */,
 			);
 			name = Table;
+			sourceTree = "<group>";
+		};
+		99B5629C1F615EB700DC587A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		99B562A21F61609300DC587A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +297,7 @@
 				9928D71F1F5F35A80072EEEE /* StudentInformation.swift in Sources */,
 				997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */,
 				9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */,
+				99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */,
 				997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */,
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
 				997A5CE01F601B0F00564334 /* WebUtils.swift in Sources */,

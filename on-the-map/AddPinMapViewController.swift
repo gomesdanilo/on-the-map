@@ -16,15 +16,21 @@ class AddPinMapViewController: UIViewController {
     let reuseId = "pin"
     var location : String?
     var website : String?
-    var locationSelected = false
     var annotation : MKPointAnnotation?
+    var coordinates : CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        goToLocation()
+        
+        if let coord = coordinates {
+            goToLocation(coodinates: coord)
+            placeAnnotation(coodinates: coord)
+        }
     }
     
     func updateUser() {
+        // TODO: Check this
+        // This code is dupicated because we can't keep reference for user. It's a struct...
         AppDelegate.sharedInstance().currentUser?.location = location
         AppDelegate.sharedInstance().currentUser?.mediaUrl = website
         AppDelegate.sharedInstance().currentUser?.latitude = annotation!.coordinate.latitude
@@ -32,10 +38,6 @@ class AddPinMapViewController: UIViewController {
     }
     
     @IBAction func didTapOnConfirmButton(_ sender: Any) {
-        if !locationSelected {
-            showErrorMessage("Please pin a location first")
-            return
-        }
         updateUser()
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -44,42 +46,21 @@ class AddPinMapViewController: UIViewController {
         UIUtils.showErrorMessage(message, viewController: self)
     }
     
-    // MARK: - Geocode
+    // MARK: - Geocode / Annotations
     
-    func goToLocation(){
-        
-        if let address = location {
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in
-                if error != nil || placemarks?.count == 0 {
-                    self.showErrorMessage("Failed to find address")
-                    return
-                }
-                let place = MKPlacemark(placemark: placemarks![0])
-                
-                self.goToLocation(place)
-                self.placeAnnotation(place)
-                self.locationSelected = true
-            })
-        }
-    }
-    
-    func goToLocation(_ place : MKPlacemark){
+    func goToLocation(coodinates : CLLocationCoordinate2D){
         let distanceInMeters : Double = 1000 * 10 // 10 KM
-        let region = MKCoordinateRegionMakeWithDistance(place.coordinate, distanceInMeters, distanceInMeters)
+        let region = MKCoordinateRegionMakeWithDistance(coodinates, distanceInMeters, distanceInMeters)
         self.mapView.setRegion(region, animated: true)
     }
     
-    // MARK: - Annotations
-    
-    func placeAnnotation(_ place : MKPlacemark){
+    func placeAnnotation(coodinates : CLLocationCoordinate2D){
         annotation = MKPointAnnotation()
-        annotation!.coordinate = place.coordinate
+        annotation!.coordinate = coodinates
         self.mapView.addAnnotation(annotation!)
     }
     
     func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
-        
         let newPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         newPin.isDraggable = true
         newPin.animatesDrop = true
