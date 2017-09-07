@@ -11,10 +11,12 @@ import UIKit
 class PinListTableViewController: UITableViewController {
 
     var userData : UserData!
+    var logoutController : LogoutController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userData = AppDelegate.sharedInstance().userData
+        logoutController = LogoutController(viewController: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,9 +30,6 @@ class PinListTableViewController: UITableViewController {
         }
     }
     
-    func goToLoginPage(){
-        self.dismiss(animated: true, completion: nil)
-    }
     
     func loadStudents(students:[StudentInformation]){
         userData.latestStudents = students
@@ -54,16 +53,7 @@ class PinListTableViewController: UITableViewController {
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
-        UDAClient.sharedInstance().logout { (success, errorMessage) in
-            
-            if errorMessage != nil {
-                // Error
-                return
-            }
-            
-            self.userData.loggedInUser = nil
-            self.goToLoginPage()
-        }
+        logoutController?.logout()
     }
 }
 

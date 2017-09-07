@@ -14,28 +14,23 @@ class MapViewController: UIViewController {
     var userData : UserData!
     let reuseId = "pin"
     
+    var logoutController : LogoutController?
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userData = AppDelegate.sharedInstance().userData
+        logoutController = LogoutController(viewController: self)
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
-        UDAClient.sharedInstance().logout { (success, errorMessage) in
-            
-            if errorMessage != nil {
-                // Error
-                return
-            }
-            
-            self.userData.loggedInUser = nil
-            self.goToLoginPage()
-        }
+        logoutController?.logout()
     }
 
     @IBAction func didClickOnRefresh(_ sender: Any) {
         print("refresh")
+        reloadMap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,9 +38,6 @@ class MapViewController: UIViewController {
         reloadMap()
     }
     
-    func goToLoginPage(){
-        self.dismiss(animated: true, completion: nil)
-    }
     
     func getCoordinatesRange(map : MKMapView) -> CoordinatesRange {
         var range = CoordinatesRange()

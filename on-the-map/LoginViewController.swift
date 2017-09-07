@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     var userData : UserData!
     var keyboardController : KeyboardController?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userData = AppDelegate.sharedInstance().userData
@@ -23,6 +24,7 @@ class LoginViewController: UIViewController {
         keyboardController?.viewController = self
         keyboardController?.manageTextField(emailTextfield!)
         keyboardController?.manageTextField(passwordTextfield!)
+        
     }
     
     @IBAction func didClickOnLoginButton(_ sender: Any) {
