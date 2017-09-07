@@ -122,6 +122,7 @@ class MapViewController: UIViewController {
     func populateAnnotationPin(annotation: MKAnnotation, pin : MKAnnotationView){
         pin.annotation = annotation
     }
+    
 }
 
 extension MapViewController : MKMapViewDelegate {
@@ -149,9 +150,10 @@ extension MapViewController : MKMapViewDelegate {
             return
         }
         
-//        if let website = view.annotation?.subtitle {
-//            UIUtils.openWebsite(url: website)
-//        }
+        // subtitle is double optional for some reason.
+        if let url1 = view.annotation?.subtitle, let url = url1 {
+            UIUtils.openWebsite(url: url)
+        }
     }
 }
 

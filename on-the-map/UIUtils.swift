@@ -16,14 +16,19 @@ class UIUtils {
         viewController.present(alert, animated: true, completion: nil)
     }
 
-    static func openWebsite( url: String) {
+    static func openWebsite(url urlString: String) {
         
-        if url == "" {
+        if urlString == "" {
             return
         }
-
+        
+        guard let url = URL(string: urlString) else {
+            // Invalid url
+            return
+        }
+        
         let app = UIApplication.shared
-        app.open(URL(string: url)!, options: [:], completionHandler: { (success) in
+        app.open(url, options: [:], completionHandler: { (success) in
             // Results...
         })
     }
