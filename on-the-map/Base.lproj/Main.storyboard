@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZYR-8x-iil">
-                                <rect key="frame" x="37.5" y="50" width="300" height="287"/>
+                                <rect key="frame" x="37.5" y="50" width="300" height="317"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DC8-Yh-0xG">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
@@ -35,7 +35,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qoL-Uq-g0s">
-                                        <rect key="frame" x="0.0" y="102" width="300" height="116"/>
+                                        <rect key="frame" x="0.0" y="102" width="300" height="146"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AIC-bi-myL">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -60,10 +60,13 @@
                                                     <action selector="didClickOnLoginButton:" destination="gt1-9F-DhN" eventType="touchUpInside" id="zhr-v5-Mw1"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OLC-XK-pAJ">
+                                                <rect key="frame" x="0.0" y="126" width="300" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="cGN-EC-Ump">
-                                        <rect key="frame" x="0.0" y="258" width="300" height="29"/>
+                                        <rect key="frame" x="0.0" y="288" width="300" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWf-4g-18d">
                                                 <rect key="frame" x="0.0" y="0.0" width="222.5" height="29"/>
@@ -96,6 +99,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="OLC-XK-pAJ" id="31J-mY-KHr"/>
                         <outlet property="emailTextfield" destination="AIC-bi-myL" id="4IU-hw-CtA"/>
                         <outlet property="passwordTextfield" destination="ghY-SM-v1C" id="ZME-gp-eH7"/>
                         <segue destination="Qz7-Eb-slE" kind="show" identifier="showMap" id="taD-IO-8db"/>

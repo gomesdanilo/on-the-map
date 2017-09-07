@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     var userData : UserData!
@@ -66,9 +67,9 @@ class LoginViewController: UIViewController {
         let email = emailTextfield.text!
         let password = passwordTextfield.text!
         
-        UIUtils.showProgressIndicator()
+        showLoadingUI()
         UDAClient.sharedInstance().loginAndData(email: email, password: password) { (user, errorMessage) in
-            UIUtils.hideProgressIndicator()
+            self.hideLoadingUI()
             
             if errorMessage == nil {
                 self.userData.loggedInUser = user
@@ -92,4 +93,17 @@ class LoginViewController: UIViewController {
         super.viewWillDisappear(animated)
         keyboardController?.unsubscribeToKeyboardNotifications()
     }
+    
+    func showLoadingUI(){
+        view.isUserInteractionEnabled = false
+        UIUtils.showProgressIndicator()
+        activityIndicator?.startAnimating()
+    }
+    
+    func hideLoadingUI(){
+        view.isUserInteractionEnabled = true
+        UIUtils.hideProgressIndicator()
+        activityIndicator?.stopAnimating()
+    }
+
 }
