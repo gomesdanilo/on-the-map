@@ -105,9 +105,9 @@ class MapViewController: UIViewController {
     
     func buildNewAnnotationPin(annotation: MKAnnotation) -> MKAnnotationView {
         
-        let newPin = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        let newPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         newPin.canShowCallout = true
-        newPin.image = UIImage(named: "icon_pin")
+        newPin.pinTintColor = MKPinAnnotationView.greenPinColor()
         newPin.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         return newPin
     }
