@@ -17,7 +17,7 @@ class AddPinViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let geocoder = AddPinGeocodeController()
+    let geocoder = AddPinGeocoder()
     var coordinates : CLLocationCoordinate2D?
     var userData : UserData!
     var keyboardController : KeyboardController?

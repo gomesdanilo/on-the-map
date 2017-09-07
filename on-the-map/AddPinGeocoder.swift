@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddPinGeocodeController: NSObject {
+class AddPinGeocoder: NSObject {
 
     func findCoordinates(withAddress address : String,
                      completionHandler : @escaping (_ coordinates : CLLocationCoordinate2D?, _ errorMessage : String?) -> Void){

@@ -27,7 +27,7 @@
 		997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE51F603ADD00564334 /* UIUtils.swift */; };
 		997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997A5CE91F6045A400564334 /* PinListTableViewCell.swift */; };
 		99B562991F61589E00DC587A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562981F61589E00DC587A /* Constants.swift */; };
-		99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */; };
+		99B562A11F615F4C00DC587A /* AddPinGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A01F615F4C00DC587A /* AddPinGeocoder.swift */; };
 		99B562A61F616EEF00DC587A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A51F616EEF00DC587A /* UserData.swift */; };
 		99B562A91F6176D800DC587A /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B562A81F6176D800DC587A /* KeyboardController.swift */; };
 /* End PBXBuildFile section */
@@ -55,7 +55,7 @@
 		997A5CE51F603ADD00564334 /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		997A5CE91F6045A400564334 /* PinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListTableViewCell.swift; sourceTree = "<group>"; };
 		99B562981F61589E00DC587A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinGeocodeController.swift; sourceTree = "<group>"; };
+		99B562A01F615F4C00DC587A /* AddPinGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPinGeocoder.swift; sourceTree = "<group>"; };
 		99B562A51F616EEF00DC587A /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		99B562A81F6176D800DC587A /* KeyboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,7 +224,7 @@
 		99B562A21F61609300DC587A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				99B562A01F615F4C00DC587A /* AddPinGeocodeController.swift */,
+				99B562A01F615F4C00DC587A /* AddPinGeocoder.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 				997A5CEA1F6045A400564334 /* PinListTableViewCell.swift in Sources */,
 				99B562A61F616EEF00DC587A /* UserData.swift in Sources */,
 				9928D7041F5EF5750072EEEE /* AddPinViewController.swift in Sources */,
-				99B562A11F615F4C00DC587A /* AddPinGeocodeController.swift in Sources */,
+				99B562A11F615F4C00DC587A /* AddPinGeocoder.swift in Sources */,
 				9912B0741F61826D00D751F6 /* LogoutController.swift in Sources */,
 				997A5CE61F603ADD00564334 /* UIUtils.swift in Sources */,
 				9928D7061F5EF59D0072EEEE /* PinListTableViewController.swift in Sources */,
