@@ -21,7 +21,7 @@ class PinListTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        retrieveStudents()
+        retrieveStudentsFromServer()
     }
     
     func openBrowserWithStudent(_ student : StudentInformation){
@@ -40,7 +40,7 @@ class PinListTableViewController: UITableViewController {
         UIUtils.showErrorMessage(message, viewController: self)
     }
     
-    func retrieveStudents(){
+    func retrieveStudentsFromServer(){
         UIUtils.showProgressIndicator()
         PARClient.sharedInstance().retrieveLatestStudentLocations { (students, error) in
             UIUtils.hideProgressIndicator()
@@ -53,7 +53,7 @@ class PinListTableViewController: UITableViewController {
     }
     
     @IBAction func didClickOnReload(_ sender: Any){
-        retrieveStudents()
+        retrieveStudentsFromServer()
     }
     
     @IBAction func didClickOnLogout(_ sender: Any) {
